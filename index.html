@@ -1,0 +1,135 @@
+<!DOCTYPE html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ass.js demo</title>
+<script src="interpolating.js"></script>
+<script src="ass.js"></script>
+<script src="htmlrenderer.js"></script>
+
+<link href="video-js.css" rel="stylesheet">
+<script src="video.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+<script id="j">
+
+var video_player;
+var subtitle_div;
+var subtitle_fileinput;
+var video_fileinput;
+var video_div;
+var videoJsObj;
+var assRenderer = new AssRenderer();
+
+var hideFileInputTimeout;
+
+window.onload = function(){
+  console.log("window loaded");
+  video_player = document.getElementById('video_player');
+  subtitle_div = document.getElementById('subtitle_div');
+  subtitle_fileinput = document.getElementById('subtitle_fileinput');
+  video_fileinput = document.getElementById('video_fileinput');
+  fileinput_div = document.getElementById('fileinput_div');
+  video_div = document.getElementById('video_div');
+  videoJsObj = videojs("video_player", {}, null);
+	
+	//window.onresize = resizeVideo;
+	//video_player.addEventListener("loadedmetadata", resizeVideo, false);
+	//if (!window.addEventListener) window.addEventListener = window.attachEvent;
+	window.addEventListener("resize", function(){if (typeof(assRenderer) != "undefined") assRenderer.scaleSubtitleDiv();}, false)
+  
+  window.onmousemove = function() {
+    fileinput_div.style.transform = "translate(0%, 0%)";
+    clearTimeout(hideFileInputTimeout);
+    hideFileInputTimeout = setTimeout(function(){fileinput_div.style.transform = "translate(0%, -100%)";}, 2000, false);
+  };
+  assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
+  assRenderer.setVideoElement(video_player);
+}
+
+function loadVideoFile() {
+  videoJsObj.src(window.URL.createObjectURL(video_fileinput.files[0]));
+}
+
+function loadSubtitleFile() {
+  var fr = new FileReader();
+  fr.onload = function(){loadSsa(fr.result)};
+  fr.readAsText(subtitle_fileinput.files[0]);
+}
+function loadSsa(ssaString) {
+  var assObj = Ass.fromString(ssaString);
+  assRenderer.assData = assObj;
+  assRenderer.generateHTML();
+}
+
+</script>
+
+</head>
+
+<body>
+  <div id="body_wrapper">
+    <div id="video_div">
+      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin video-wrapper" src="test/HennekoOP.mp4"></video> 
+    </div>
+      
+    <div id="fileinput_div">
+      Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
+      <br>Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
+    </div>
+  </div>
+  <style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#body_wrapper {
+	background: black;
+	color: white;
+	min-height: 100%;
+	overflow: hidden;
+}
+
+#video_div {
+  background: black;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#video_player {
+  background: black;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#subtitle_div {
+  background: transparent;
+  /*position: relative;
+  top: -100%;
+  height: 100%;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#fileinput_div {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  transition: transform 1s;
+  z-index: 9001;
+}
+
+
+</style>
+</body>
+
