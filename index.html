@@ -45,6 +45,16 @@ window.onload = function(){
   };
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
+  
+  xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    console.log(xhr.readyState, xhr.status);
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      loadSsa(xhr.responseText);
+    }
+  }
+  xhr.open("GET","test/HennekoOP.ass",true);
+  xhr.send();
 }
 
 function loadVideoFile() {
