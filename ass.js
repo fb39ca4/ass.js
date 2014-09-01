@@ -2,19 +2,6 @@ function Ass() {
   this.scriptInfo = new Ass.ScriptInfo();
   this.dialogue = [];
   this.styles = {};
-  /*this.css = {}
-  this.css.identifier = "ass-js_" + Ass.util.randomString(8);
-  var styleElement = document.createElement("style");
-  styleElement.type = "text/css";
-  styleElement.title = this.css.identifier;
-  document.head.appendChild(styleElement);
-  for (var i = 0; i < document.styleSheets.length; i++) {
-    this.css.styleSheet = document.styleSheets[i];
-    if (this.css.styleSheet.title == this.css.identifier) {
-      console.log("using style sheet ", i);
-      break;
-    }
-  }*/
 }
 
 Ass.fromString = function(input) {
@@ -911,6 +898,7 @@ Ass.ScriptInfo = function() {
   this.playResY = 720;
   this.scaledBorderAndShadow = false;
   this.wrapStyle = 0;
+  this.timingOffset = 0;
 }
 
 Ass.ScriptInfo.fromRaw = function(raw) {
@@ -918,6 +906,7 @@ Ass.ScriptInfo.fromRaw = function(raw) {
   if (parseFloat(raw.PlayResX) != NaN) si.playResX = parseFloat(raw.PlayResX);
   if (parseFloat(raw.PlayResY) != NaN) si.playResY = parseFloat(raw.PlayResY);
   if (parseInt(raw.WrapStyle) >= 0 && parseInt(raw.WrapStyle) < 4) si.wrapStyle = parseInt(raw.WrapStyle);
+  if (parseFloat(raw.TimingOffset) != NaN) si.timingOffset = parseFloat(raw.TimingOffset);
   si.scriptType = raw.ScriptType;
   return si;
 }

@@ -54,8 +54,8 @@ AssRenderer.prototype.generateHTML = function() {
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
     event.ass = this.assData.dialogue[i];
-    event.startTime = event.ass.startTime;
-    event.endTime = event.ass.endTime;
+    event.startTime = event.ass.startTime + this.assData.scriptInfo.timingOffset;
+    event.endTime = event.ass.endTime + this.assData.scriptInfo.timingOffset;
     event.duration = event.endTime - event.startTime;
     if (event.duration != 0) this.events.push(event);
   }
