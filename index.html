@@ -29,7 +29,7 @@ window.onload = function(){
   subtitle_div = document.getElementById('subtitle_div');
   subtitle_fileinput = document.getElementById('subtitle_fileinput');
   video_fileinput = document.getElementById('video_fileinput');
-  fileinput_div = document.getElementById('fileinput_div');
+  top_bar = document.getElementById('top_bar');
   video_div = document.getElementById('video_div');
   videoJsObj = videojs("video_player", {}, null);
 	
@@ -39,9 +39,9 @@ window.onload = function(){
 	window.addEventListener("resize", function(){if (typeof(assRenderer) != "undefined") assRenderer.scaleSubtitleDiv();}, false)
   
   window.onmousemove = function() {
-    fileinput_div.style.transform = "translate(0%, 0%)";
+    top_bar.style.transform = "translate(0%, 0%)";
     clearTimeout(hideFileInputTimeout);
-    hideFileInputTimeout = setTimeout(function(){fileinput_div.style.transform = "translate(0%, -100%)";}, 2000, false);
+    hideFileInputTimeout = setTimeout(function(){top_bar.style.transform = "translate(0%, -100%)";}, 2000, false);
   };
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
@@ -81,6 +81,12 @@ function loadAss(assString) {
   assRenderer.generateHTML();
 }
 
+function changeVideo(btn) {
+  console.log(this);
+  loadSubtitlesFromURL(btn.getAttribute("sub"));
+  loadVideoFromURL(btn.getAttribute("vid"));
+}
+
 </script>
 
 </head>
@@ -91,9 +97,10 @@ function loadAss(assString) {
       <video id="video_player" controls preload="auto" class="video-js vjs-default-skin video-wrapper" src="test/HennekoOP.mp4"></video> 
     </div>
       
-    <div id="fileinput_div">
-      Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
-      <br>Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
+    <div id="top_bar">
+      <button onclick="changeVideo(this)" vid="test/hennekoOP.mp4" sub="test/hennekoOP.ass">Henneko OP</button> 
+      <br>Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
+      Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
     </div>
   </div>
   <style>
@@ -138,7 +145,7 @@ html, body {
   overflow: hidden;
 }
 
-#fileinput_div {
+#top_bar {
   position: absolute;
   top: 0px;
   width: 100%;
