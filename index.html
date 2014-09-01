@@ -24,7 +24,7 @@ var assRenderer = new AssRenderer();
 var hideFileInputTimeout;
 
 window.onload = function(){
-  console.log("window loaded");
+  //console.log("window loaded");
   video_player = document.getElementById('video_player');
   subtitle_div = document.getElementById('subtitle_div');
   subtitle_fileinput = document.getElementById('subtitle_fileinput');
@@ -46,7 +46,7 @@ window.onload = function(){
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
   
-  loadVideoFromURL("test/hennekoOP.ass");
+  loadSubtitlesFromURL("test/hennekoOP.ass");
 }
 
 function loadVideoFromURL(url) {
@@ -55,8 +55,9 @@ function loadVideoFromURL(url) {
 
 function loadSubtitlesFromURL(url) {
   var xhr = new XMLHttpRequest();
+  xhr.overrideMimeType("text/plain");
   xhr.onreadystatechange = function() {
-    console.log(xhr.readyState, xhr.status);
+    //console.log(xhr.readyState, xhr.status);
     if (xhr.readyState == 4 && xhr.status == 200) {
       loadAss(xhr.responseText);
     }

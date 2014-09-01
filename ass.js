@@ -903,10 +903,10 @@ Ass.ScriptInfo = function() {
 
 Ass.ScriptInfo.fromRaw = function(raw) {
   var si = new Ass.ScriptInfo();
-  if (parseFloat(raw.PlayResX) != NaN) si.playResX = parseFloat(raw.PlayResX);
-  if (parseFloat(raw.PlayResY) != NaN) si.playResY = parseFloat(raw.PlayResY);
+  if (!isNaN(parseFloat(raw.PlayResX))) si.playResX = parseFloat(raw.PlayResX);
+  if (!isNaN(parseFloat(raw.PlayResY))) si.playResY = parseFloat(raw.PlayResY);
   if (parseInt(raw.WrapStyle) >= 0 && parseInt(raw.WrapStyle) < 4) si.wrapStyle = parseInt(raw.WrapStyle);
-  if (parseFloat(raw.TimingOffset) != NaN) si.timingOffset = parseFloat(raw.TimingOffset);
+  if (!isNaN(parseFloat(raw.TimingOffset))) si.timingOffset = parseFloat(raw.TimingOffset);
   si.scriptType = raw.ScriptType;
   return si;
 }
@@ -1085,16 +1085,16 @@ Ass.AssStyle.fromRaw = function(raw) {
   if (parseFloat(raw.Italic) == -1) style.italic = true;
   if (parseFloat(raw.Underline) == -1) style.underline = true;
   if (parseFloat(raw.Strikeout) == -1) style.strikethrough = true;
-  if (parseFloat(raw.ScaleX) != NaN) style.scaleX = new InterpolatingBase(parseFloat(raw.ScaleX) / 100.0);
-  if (parseFloat(raw.ScaleY) != NaN) style.scaleY = new InterpolatingBase(parseFloat(raw.ScaleY) / 100.0);
-  if (parseFloat(raw.Spacing) != NaN) style.spacing = new InterpolatingBase(parseFloat(raw.Spacing));
-  if (parseFloat(raw.Angle) != NaN) style.rotZ = new InterpolatingBase(parseFloat(raw.Angle));
+  if (!isNaN(parseFloat(raw.ScaleX))) style.scaleX = new InterpolatingBase(parseFloat(raw.ScaleX) / 100.0);
+  if (!isNaN(parseFloat(raw.ScaleY))) style.scaleY = new InterpolatingBase(parseFloat(raw.ScaleY) / 100.0);
+  if (!isNaN(parseFloat(raw.Spacing))) style.spacing = new InterpolatingBase(parseFloat(raw.Spacing));
+  if (!isNaN(parseFloat(raw.Angle))) style.rotZ = new InterpolatingBase(parseFloat(raw.Angle));
   if (parseInt(raw.BorderStyle) == 1 || parseInt(raw.BorderStyle) == 3) style.borderStyle = parseInt(raw.BorderStyle);
-  if (parseFloat(raw.Outline) != NaN) style.outlineX = style.outlineY = new InterpolatingBase(parseFloat(raw.Outline));
-  if (parseFloat(raw.Shadow) != NaN) style.shadowX = style.shadowY = new InterpolatingBase(parseFloat(raw.Shadow));
-  if (parseFloat(raw.MarginL) != NaN) style.marginL = parseFloat(raw.MarginL);
-  if (parseFloat(raw.MarginR) != NaN) style.marginR = parseFloat(raw.MarginR);
-  if (parseFloat(raw.MarginV) != NaN) style.marginV= parseFloat(raw.MarginV);
+  if (!isNaN(parseFloat(raw.Outline))) style.outlineX = style.outlineY = new InterpolatingBase(parseFloat(raw.Outline));
+  if (!isNaN(parseFloat(raw.Shadow))) style.shadowX = style.shadowY = new InterpolatingBase(parseFloat(raw.Shadow));
+  if (!isNaN(parseFloat(raw.MarginL))) style.marginL = parseFloat(raw.MarginL);
+  if (!isNaN(parseFloat(raw.MarginR))) style.marginR = parseFloat(raw.MarginR);
+  if (!isNaN(parseFloat(raw.MarginV))) style.marginV= parseFloat(raw.MarginV); 
   if (parseInt(raw.Alignment) > 0 && parseInt(raw.Alignment) <= 9) {
     var alignment = parseInt(raw.Alignment);
     style.alignmentH = ["left", "center", "right"][(alignment - 1) % 3];
@@ -1251,6 +1251,12 @@ Ass.util.randomString = function(length) {
   var result = '';
   for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
   return result;
+}
+
+Ass.util.validateFloatString = function(str) {
+  if (typeof(str) == "undefined") return false
+  if (parseFloat(str) == NaN) return false;
+  return true;
 }
 
 /*if (!String.prototype.startsWith) {
