@@ -10,6 +10,8 @@
 <script src="video.js"></script>
 
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='font/webfonts.css' rel='stylesheet' type='text/css'>
 
 <script id="j">
 
@@ -46,7 +48,7 @@ window.onload = function(){
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
   
-  loadSubtitlesFromURL("test/hennekoOP.ass");
+  loadSubtitlesFromURL("test/AttackOnTitanOP2.ass");
 }
 
 function loadVideoFromURL(url) {
@@ -83,8 +85,8 @@ function loadAss(assString) {
 
 function changeVideo(btn) {
   console.log(this);
-  loadSubtitlesFromURL(btn.getAttribute("sub"));
   loadVideoFromURL(btn.getAttribute("vid"));
+  loadSubtitlesFromURL(btn.getAttribute("sub"));
 }
 
 </script>
@@ -94,11 +96,12 @@ function changeVideo(btn) {
 <body>
   <div id="body_wrapper">
     <div id="video_div">
-      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin video-wrapper" src="test/HennekoOP.mp4"></video> 
+      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin video-wrapper" src="test/AttackOnTitanOP2.mp4"></video> 
     </div>
       
     <div id="top_bar">
-      <button onclick="changeVideo(this)" vid="test/HennekoOP.mp4" sub="test/HennekoOP.ass">Henneko OP</button> 
+      <button onclick="changeVideo(this)" vid="test/HennekoOP.mp4" sub="test/HennekoOP.ass">Henneko OP</button>
+      <button onclick="changeVideo(this)" vid="test/AttackOnTitanOP2.mp4" sub="test/AttackOnTitanOP2.ass">Attack on Titan OP 2</button>
       <br>Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
       Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
     </div>
