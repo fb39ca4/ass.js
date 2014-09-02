@@ -5,35 +5,19 @@ AssRenderer = function() {
   this.resetCount = 0;
   this.seekQueued = false;
   
-  this.css = {}
-  this.css.identifier = "ass-js_" + Ass.util.randomString(8);
-  var styleElement = document.createElement("style");
-  styleElement.type = "text/css";
-  styleElement.title = this.css.identifier;
-  document.head.appendChild(styleElement);
-  for (var i = 0; i < document.styleSheets.length; i++) {
-    this.css.styleSheet = document.styleSheets[i];
-    if (this.css.styleSheet.title == this.css.identifier) {
-      this.css.styleSheetNumber = i;
-      break;
-    }
-  }
-  var percentages = [0, 100];
-  var keyFrames = this.createKeyFramesRule(this.css.identifier + "_timing", percentages);
-  keyFrames[0].visibility = "visible";
-  keyFrames[1].visibility = "visible";
+  this.setupCss();
 }
 
 AssRenderer.prototype.setupCss = function() {
   if (this.css) {
-    this.css.styleSheet.parentNode.removeChild(this.css.styleSheet);
+    this.css.styleElement.parentNode.removeChild(this.css.styleElement);
   }
   this.css = {}
   this.css.identifier = "ass-js_" + Ass.util.randomString(8);
-  var styleElement = document.createElement("style");
-  styleElement.type = "text/css";
-  styleElement.title = this.css.identifier;
-  document.head.appendChild(styleElement);
+  this.css.styleElement = document.createElement("style");
+  this.css.styleElement.type = "text/css";
+  this.css.styleElement.title = this.css.identifier;
+  document.head.appendChild(this.css.styleElement);
   for (var i = 0; i < document.styleSheets.length; i++) {
     this.css.styleSheet = document.styleSheets[i];
     if (this.css.styleSheet.title == this.css.identifier) {
@@ -49,7 +33,7 @@ AssRenderer.prototype.setupCss = function() {
 
 var testDiv;
 AssRenderer.prototype.generateHTML = function() {
-  this.setupCss;
+  this.setupCss();
   this.events = [];
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
@@ -66,7 +50,7 @@ AssRenderer.prototype.generateHTML = function() {
   this.events.sort(sortFunction);
   
   
-  testDiv = document.createElement("div");
+  var testDiv = document.createElement("div");
   testDiv.style.width = this.assData.scriptInfo.playResX.toString() + "px";
   testDiv.style.height = this.assData.scriptInfo.playResY.toString() + "px";
   testDiv.style.zIndex = "20000";
