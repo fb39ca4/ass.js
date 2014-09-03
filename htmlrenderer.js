@@ -258,7 +258,7 @@ AssRenderer.prototype.generateHTML = function() {
     timingDiv.appendChild(event.html);
     AssRenderer.setAnimationName(timingDiv, this.css.identifier + "_timing");
     AssRenderer.setAnimationDuration(timingDiv, event.duration);
-    //timingDiv.style.visibility = "hidden";
+    timingDiv.style.visibility = "hidden";
     timingDiv.style.pointerEvents = "auto";
     event.html = timingDiv;
     
