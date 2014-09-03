@@ -9,8 +9,8 @@
 <link href="video-js.css" rel="stylesheet">
 <script src="video.js"></script>
 
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link href='font/webfonts.css' rel='stylesheet' type='text/css'>
 
 <script id="j">
@@ -57,7 +57,7 @@ function loadVideoFromURL(url) {
 
 function loadSubtitlesFromURL(url) {
   var xhr = new XMLHttpRequest();
-  xhr.overrideMimeType("text/plain");
+  xhr.overrideMimeType("text/plain; charset=utf-8");
   xhr.onreadystatechange = function() {
     //console.log(xhr.readyState, xhr.status);
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -96,7 +96,7 @@ function changeVideo(btn) {
 <body>
   <div id="body_wrapper">
     <div id="video_div">
-      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin video-wrapper" src="test/AttackOnTitanOP2.mp4"></video> 
+      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered video-wrapper" src="test/AttackOnTitanOP2.mp4"></video> 
     </div>
       
     <div id="top_bar">

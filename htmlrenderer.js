@@ -33,13 +33,13 @@ AssRenderer.prototype.setupCss = function() {
 
 var testDiv;
 AssRenderer.prototype.generateHTML = function() {
-  this.setupCss();
+  //this.setupCss();
   this.events = [];
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
     event.ass = this.assData.dialogue[i];
-    event.startTime = event.ass.startTime + this.assData.scriptInfo.timingOffset;
-    event.endTime = event.ass.endTime + this.assData.scriptInfo.timingOffset;
+    event.startTime = event.ass.startTime;
+    event.endTime = event.ass.endTime;
     event.duration = event.endTime - event.startTime;
     if (event.duration != 0) this.events.push(event);
   }
@@ -50,7 +50,7 @@ AssRenderer.prototype.generateHTML = function() {
   this.events.sort(sortFunction);
   
   
-  var testDiv = document.createElement("div");
+  testDiv = document.createElement("div");
   testDiv.style.width = this.assData.scriptInfo.playResX.toString() + "px";
   testDiv.style.height = this.assData.scriptInfo.playResY.toString() + "px";
   testDiv.style.zIndex = "20000";
@@ -144,7 +144,7 @@ AssRenderer.prototype.generateHTML = function() {
         keyFrames[2].opacity = "1";
         keyFrames[3].opacity = (event.ass.fade.t2 != 0) ? "0" : "1";
         AssRenderer.setAnimationName(fadeDiv, event.animationIdentifier + "_fade");
-        fadeDiv.style.opacity = "0";
+        //fadeDiv.style.opacity = "0";
       }
       else if (event.ass.fade.mode == "complex") {
         var assToCssOpacity = function(a) { return (1.0 - (a / 255)).toString(); };
@@ -161,7 +161,7 @@ AssRenderer.prototype.generateHTML = function() {
         keyFrames[4].opacity = assToCssOpacity(event.ass.fade.a3);
         keyFrames[5].opacity = assToCssOpacity(event.ass.fade.a3);
         AssRenderer.setAnimationName(fadeDiv, event.animationIdentifier + "_fade");
-        fadeDiv.style.opacity = "0";
+        //fadeDiv.style.opacity = "0";
       }
       /*else {
         var percentages = [0, 100];
@@ -258,7 +258,7 @@ AssRenderer.prototype.generateHTML = function() {
     timingDiv.appendChild(event.html);
     AssRenderer.setAnimationName(timingDiv, this.css.identifier + "_timing");
     AssRenderer.setAnimationDuration(timingDiv, event.duration);
-    timingDiv.style.visibility = "hidden";
+    //timingDiv.style.visibility = "hidden";
     timingDiv.style.pointerEvents = "auto";
     event.html = timingDiv;
     
@@ -756,7 +756,7 @@ AssRenderer.prototype.removeEvent = function(i, resetCount) {
   if (resetCount != this.resetCount) return;
   
   var event = this.events[i];
-  if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
+  //if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
 }
 
 AssRenderer.prototype.searchRule = function(name) {
