@@ -33,13 +33,13 @@ AssRenderer.prototype.setupCss = function() {
 
 var testDiv;
 AssRenderer.prototype.generateHTML = function() {
-  //this.setupCss();
+  this.setupCss();
   this.events = [];
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
     event.ass = this.assData.dialogue[i];
-    event.startTime = event.ass.startTime;
-    event.endTime = event.ass.endTime;
+    event.startTime = event.ass.startTime + this.assData.scriptInfo.timingOffset;
+    event.endTime = event.ass.endTime + this.assData.scriptInfo.timingOffset;
     event.duration = event.endTime - event.startTime;
     if (event.duration != 0) this.events.push(event);
   }
@@ -620,7 +620,7 @@ AssRenderer.setAnimationInherit = function(element) {
   var i = "inherit";
   element.style.animationDuration = i;
   element.style.animationTimingFunction="inherit";
-  element.style.animationFillMode="inherit";
+  element.style.animationFillMode="both";
   element.style.animationDelay="inherit";
   element.style.animationPlayState="inherit";
   
