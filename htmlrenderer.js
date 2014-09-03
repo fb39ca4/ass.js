@@ -620,7 +620,7 @@ AssRenderer.setAnimationInherit = function(element) {
   var i = "inherit";
   element.style.animationDuration = i;
   element.style.animationTimingFunction="inherit";
-  element.style.animationFillMode="both";
+  element.style.animationFillMode="inherit";
   element.style.animationDelay="inherit";
   element.style.animationPlayState="inherit";
   
