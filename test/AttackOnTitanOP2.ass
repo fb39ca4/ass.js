@@ -105,7 +105,7 @@ Dialogue: 1,0:01:14.03,0:01:14.61,OP-German,,0,0,0,fx,{\fad(0,200)\blur3\pos(600
 Dialogue: 2,0:01:14.03,0:01:14.61,OP-German,,0,0,0,fx,{\fad(0,200)\bord0\pos(600,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}mein
 Dialogue: 1,0:01:14.18,0:01:14.61,OP-German,,0,0,0,fx,{\fad(0,200)\blur3\pos(700,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}Freund!
 Dialogue: 2,0:01:14.18,0:01:14.61,OP-German,,0,0,0,fx,{\fad(0,200)\bord0\pos(700,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}Freund!
-Dialogue: 0,0:01:14.61,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(200,0)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,35)}Feiern wir diesen Sieg für den nächsten Kampf!
+Dialogue: 0,0:01:14.61,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(200,0)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,35)}Feiern wir diesen Sieg fÃ¼r den nÃ¤chsten Kampf!
 Dialogue: 1,0:01:14.61,0:01:14.61,OP-German,cut,0,0,0,fx,{\blur3\pos(322,35)\fad(200,0)}Fei
 Dialogue: 1,0:01:14.61,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(200,0)\blur3\pos(322,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}Fei
 Dialogue: 2,0:01:14.61,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(200,0)\bord0\pos(322,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}Fei
@@ -114,9 +114,9 @@ Dialogue: 1,0:01:14.61,0:01:15.58,OP-German,cut,0,0,0,fx,{\blur3\pos(425,35)\fad
 Dialogue: 1,0:01:14.61,0:01:15.99,OP-German,cut,0,0,0,fx,{\blur3\pos(478,35)\fad(200,0)}die
 Dialogue: 1,0:01:14.61,0:01:16.67,OP-German,cut,0,0,0,fx,{\blur3\pos(523,35)\fad(200,0)}sen
 Dialogue: 1,0:01:14.61,0:01:16.93,OP-German,cut,0,0,0,fx,{\blur3\pos(588,35)\fad(200,0)}Sieg
-Dialogue: 1,0:01:14.61,0:01:17.74,OP-German,cut,0,0,0,fx,{\blur3\pos(650,35)\fad(200,0)}für
+Dialogue: 1,0:01:14.61,0:01:17.74,OP-German,cut,0,0,0,fx,{\blur3\pos(650,35)\fad(200,0)}fÃ¼r
 Dialogue: 1,0:01:14.61,0:01:18.25,OP-German,cut,0,0,0,fx,{\blur3\pos(705,35)\fad(200,0)}den
-Dialogue: 1,0:01:14.61,0:01:18.59,OP-German,cut,0,0,0,fx,{\blur3\pos(770,35)\fad(200,0)}näch
+Dialogue: 1,0:01:14.61,0:01:18.59,OP-German,cut,0,0,0,fx,{\blur3\pos(770,35)\fad(200,0)}nÃ¤ch
 Dialogue: 1,0:01:14.61,0:01:19.02,OP-German,cut,0,0,0,fx,{\blur3\pos(833,35)\fad(200,0)}sten
 Dialogue: 1,0:01:14.61,0:01:19.56,OP-German,cut,0,0,0,fx,{\blur3\pos(927,35)\fad(200,0)}Kampf!
 Dialogue: 0,0:01:14.61,0:01:19.56,OP-German Eng,cut,0,0,0,fx,{\fad(200,0)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,685)}This victory shall guide us to our next battle!
@@ -131,17 +131,17 @@ Dialogue: 1,0:01:16.67,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(52
 Dialogue: 2,0:01:16.67,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(523,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}sen
 Dialogue: 1,0:01:16.93,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(588,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}Sieg
 Dialogue: 2,0:01:16.93,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(588,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}Sieg
-Dialogue: 1,0:01:17.74,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(650,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}für
-Dialogue: 2,0:01:17.74,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(650,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}für
+Dialogue: 1,0:01:17.74,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(650,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}fÃ¼r
+Dialogue: 2,0:01:17.74,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(650,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}fÃ¼r
 Dialogue: 1,0:01:18.25,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(705,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}den
 Dialogue: 2,0:01:18.25,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(705,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}den
-Dialogue: 1,0:01:18.59,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(770,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}näch
-Dialogue: 2,0:01:18.59,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(770,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}näch
+Dialogue: 1,0:01:18.59,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(770,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}nÃ¤ch
+Dialogue: 2,0:01:18.59,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(770,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}nÃ¤ch
 Dialogue: 1,0:01:19.02,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\blur3\pos(833,35)\c&HE9FFFE&\3c&HE9FFFE&\t(0,400,\c&H6B83E7&\3c&H6B83E7&)\t(400,1000,\c&H05052F&\3c&H05052F&)}sten
 Dialogue: 2,0:01:19.02,0:01:19.56,OP-German,cut,0,0,0,fx,{\fad(0,0)\bord0\pos(833,35)\c&HE9FFFE&\t(0,400,\c&H77C4FF&\blur1)\t(400,1000,\c&H425593&\blur2)}sten
-Dialogue: 0,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,35)}Feiern wir diesen Sieg für den nächsten {\alpha&HFF&}Kampf!
-Dialogue: 1,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\blur3\c&H05052F&\3c&H05052F&\pos(640,35)}Feiern wir diesen Sieg für den nächsten {\alpha&HFF}Kampf!
-Dialogue: 2,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\bord0\blur2\c&H425593&\pos(640,35)}Feiern wir diesen Sieg für den nächsten {\alpha&HFF}Kampf!
+Dialogue: 0,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,35)}Feiern wir diesen Sieg fÃ¼r den nÃ¤chsten {\alpha&HFF&}Kampf!
+Dialogue: 1,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\blur3\c&H05052F&\3c&H05052F&\pos(640,35)}Feiern wir diesen Sieg fÃ¼r den nÃ¤chsten {\alpha&HFF}Kampf!
+Dialogue: 2,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\fad(0,200)\bord0\blur2\c&H425593&\pos(640,35)}Feiern wir diesen Sieg fÃ¼r den nÃ¤chsten {\alpha&HFF}Kampf!
 Dialogue: 2,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\blur2\fs80\fad(0,200)\fnPortcullion\pos(935,10)\c&HE9FFFE&\3c&HE9FFFE&\t(0,500,\c&H05052F&\3c&H05052F&)}Kampf!
 Dialogue: 3,0:01:19.56,0:01:20.54,OP-German,emph,0,0,0,,{\blur0.5\bord0\fs80\fad(0,200)\fnPortcullion\pos(935,10)\c&HE9FFFE&\t(0,500,\c&H0000C4&\blur1)}Kampf!
 Dialogue: 0,0:01:19.56,0:01:20.54,OP-German Eng,emph,0,0,0,,{\fad(0,200)\bord5\blur3\3c&H000000&\c&H000000&\pos(640,685)}This victory shall guide us to our next {\alpha&HFF&}battle!
@@ -237,7 +237,7 @@ Dialogue: 1,0:01:41.20,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\o
 Dialogue: 1,0:01:41.20,0:01:41.35,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(256.078125,90)\move(169.20251177394,42,159.84772370487,35)\fry6.6405023547881\t(\fry6.1695447409733\alpha&H00&\shad1)\frx5}no
 Dialogue: 1,0:01:41.35,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(256.078125,90)\move(159.84772370487,35,79,35)\fry6.1695447409733\t(\fry-10)\frx5}no
 Dialogue: 1,0:01:41.35,0:01:41.46,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(256.078125,90)\move(216.84772370487,42,208.12087912088,35)\fry6.1695447409733\t(\fry5.8241758241758\alpha&H00&\shad1)\frx5}hi
-Dialogue: 1,0:01:41.35,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(256.078125,90)\move(206.84772370487,25,126,25)\fry6.1695447409733\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«??»
+Dialogue: 1,0:01:41.35,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(256.078125,90)\move(206.84772370487,25,126,25)\fry6.1695447409733\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«??Â»
 Dialogue: 1,0:01:41.46,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(256.078125,90)\move(208.12087912088,35,129,35)\fry5.8241758241758\t(\fry-10)\frx5}hi
 Dialogue: 1,0:01:41.46,0:01:41.99,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(256.078125,90)\move(243.12087912088,42,227.80062794349,35)\fry5.8241758241758\t(\fry4.160125588697\alpha&H00&\shad1)\frx5}to
 Dialogue: 1,0:01:41.99,0:01:46.50,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(256.078125,90)\move(227.80062794349,35,157,35)\fry4.160125588697\t(\fry-10)\frx5}to
@@ -359,7 +359,7 @@ Dialogue: 1,0:01:53.42,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\o
 Dialogue: 1,0:01:53.42,0:01:53.58,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(315.46875,90)\move(200.51724137931,42,190.75862068966,35)\fry3.1034482758621\t(\fry2.551724137931\alpha&H00&\shad1)\frx5}wa
 Dialogue: 1,0:01:53.58,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(315.46875,90)\move(190.75862068966,35,128,35)\fry2.551724137931\t(\fry-10)\frx5}wa
 Dialogue: 1,0:01:53.58,0:01:54.17,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(315.46875,90)\move(254.75862068966,42,237.58620689655,35)\fry2.551724137931\t(\fry0.51724137931035\alpha&H00&\shad1)\frx5}Glo
-Dialogue: 1,0:01:53.58,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(315.46875,90)\move(249.75862068966,25,187,25)\fry2.551724137931\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«??»
+Dialogue: 1,0:01:53.58,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(315.46875,90)\move(249.75862068966,25,187,25)\fry2.551724137931\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«??Â»
 Dialogue: 1,0:01:54.17,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(315.46875,90)\move(237.58620689655,35,185,35)\fry0.51724137931035\t(\fry-10)\frx5}Glo
 Dialogue: 1,0:01:54.17,0:01:54.42,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(315.46875,90)\move(294.58620689655,42,283.27586206897,35)\fry0.51724137931035\t(\fry-0.3448275862069\alpha&H00&\shad1)\frx5}ri
 Dialogue: 1,0:01:54.42,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(315.46875,90)\move(283.27586206897,35,235,35)\fry-0.3448275862069\t(\fry-10)\frx5}ri
@@ -376,7 +376,7 @@ Dialogue: 1,0:01:56.62,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\o
 Dialogue: 1,0:01:56.62,0:01:56.83,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(315.46875,90)\move(428.34482758621,42,417.72413793103,35)\fry-7.9310344827586\t(\fry-8.6551724137931\alpha&H00&\shad1)\frx5}wa
 Dialogue: 1,0:01:56.83,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(315.46875,90)\move(417.72413793103,35,411,35)\fry-8.6551724137931\t(\fry-10)\frx5}wa
 Dialogue: 1,0:01:56.83,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\blur1\bord0\alpha&H33&\org(315.46875,90)\move(480.72413793103,42,467,35)\fry-8.6551724137931\t(\fry-10\alpha&H00&\shad1)\frx5}Sieg
-Dialogue: 1,0:01:56.83,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(315.46875,90)\move(465.72413793103,25,459,25)\fry-8.6551724137931\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«??»
+Dialogue: 1,0:01:56.83,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(315.46875,90)\move(465.72413793103,25,459,25)\fry-8.6551724137931\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«??Â»
 Dialogue: 1,0:01:57.22,0:01:57.22,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(315.46875,90)\move(467,35,467,35)\fry-10\t(\fry-10)\frx5}Sieg
 Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(90,42,-10,42)\fry10\t(\fry-10)\frx5\t(190,310,\c&H474750&\3c&H474750&\alpha&H44&)}se
 Dialogue: 1,0:01:57.22,0:01:57.41,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(90,42,86.296296296296,42)\fry10\t(\fry9.2592592592593)\frx5}se
@@ -388,8 +388,8 @@ Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00
 Dialogue: 1,0:01:57.22,0:01:58.20,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(216,42,196.89668615984,42)\fry10\t(\fry6.1793372319688)\frx5}ni
 Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(254,42,154,42)\fry10\t(\fry-10)\frx5\t(1550,1830,\c&H474750&\3c&H474750&\alpha&H44&)}wa
 Dialogue: 1,0:01:57.22,0:01:58.77,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(254,42,223.78557504873,42)\fry10\t(\fry3.9571150097466)\frx5}wa
-Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(310,42,210,42)\fry10\t(\fry-10)\frx5\t(1830,2480,\c&H474750&\3c&H474750&\alpha&H44&)}Flü
-Dialogue: 1,0:01:57.22,0:01:59.05,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(310,42,274.32748538012,42)\fry10\t(\fry2.8654970760234)\frx5}Flü
+Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(310,42,210,42)\fry10\t(\fry-10)\frx5\t(1830,2480,\c&H474750&\3c&H474750&\alpha&H44&)}FlÃ¼
+Dialogue: 1,0:01:57.22,0:01:59.05,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(310,42,274.32748538012,42)\fry10\t(\fry2.8654970760234)\frx5}FlÃ¼
 Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(358,42,258,42)\fry10\t(\fry-10)\frx5\t(2480,2830,\c&H474750&\3c&H474750&\alpha&H44&)}gel
 Dialogue: 1,0:01:57.22,0:01:59.70,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(358,42,309.65692007797,42)\fry10\t(\fry0.33138401559454)\frx5}gel
 Dialogue: 0,0:01:57.22,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(287.5078125,90)\move(415,42,315,42)\fry10\t(\fry-10)\frx5\t(2830,3060,\c&H474750&\3c&H474750&\alpha&H44&)}der
@@ -409,9 +409,9 @@ Dialogue: 1,0:01:58.20,0:01:58.77,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\o
 Dialogue: 1,0:01:58.77,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(287.5078125,90)\move(178.78557504873,35,109,35)\fry3.9571150097466\t(\fry-10)\frx5}ni
 Dialogue: 1,0:01:58.77,0:01:59.05,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(223.78557504873,42,211.32748538012,35)\fry3.9571150097466\t(\fry2.8654970760234\alpha&H00&\shad1)\frx5}wa
 Dialogue: 1,0:01:59.05,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(287.5078125,90)\move(211.32748538012,35,147,35)\fry2.8654970760234\t(\fry-10)\frx5}wa
-Dialogue: 1,0:01:59.05,0:01:59.70,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(274.32748538012,42,254.65692007797,35)\fry2.8654970760234\t(\fry0.33138401559454\alpha&H00&\shad1)\frx5}Flü
-Dialogue: 1,0:01:59.05,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(287.5078125,90)\move(334.32748538012,25,270,25)\fry2.8654970760234\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«????»
-Dialogue: 1,0:01:59.70,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(287.5078125,90)\move(254.65692007797,35,203,35)\fry0.33138401559454\t(\fry-10)\frx5}Flü
+Dialogue: 1,0:01:59.05,0:01:59.70,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(274.32748538012,42,254.65692007797,35)\fry2.8654970760234\t(\fry0.33138401559454\alpha&H00&\shad1)\frx5}FlÃ¼
+Dialogue: 1,0:01:59.05,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(287.5078125,90)\move(334.32748538012,25,270,25)\fry2.8654970760234\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«????Â»
+Dialogue: 1,0:01:59.70,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(287.5078125,90)\move(254.65692007797,35,203,35)\fry0.33138401559454\t(\fry-10)\frx5}FlÃ¼
 Dialogue: 1,0:01:59.70,0:02:00.05,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(309.65692007797,42,295.8343079922,35)\fry0.33138401559454\t(\fry-1.0331384015595\alpha&H00&\shad1)\frx5}gel
 Dialogue: 1,0:02:00.05,0:02:02.35,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(287.5078125,90)\move(295.8343079922,35,251,35)\fry-1.0331384015595\t(\fry-10)\frx5}gel
 Dialogue: 1,0:02:00.05,0:02:00.28,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(287.5078125,90)\move(359.8343079922,42,348.35087719298,35)\fry-1.0331384015595\t(\fry-1.9298245614035\alpha&H00&\shad1)\frx5}der
@@ -521,7 +521,7 @@ Dialogue: 1,0:02:11.13,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\o
 Dialogue: 1,0:02:11.13,0:02:11.32,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(297.25,90)\move(233.73626373626,42,222.56043956044,35)\fry2.7472527472527\t(\fry1.9120879120879\alpha&H00&\shad1)\frx5}wa
 Dialogue: 1,0:02:11.32,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(297.25,90)\move(222.56043956044,35,163,35)\fry1.9120879120879\t(\fry-10)\frx5}wa
 Dialogue: 1,0:02:11.32,0:02:11.90,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(297.25,90)\move(286.56043956044,42,266.81318681319,35)\fry1.9120879120879\t(\fry-0.63736263736264\alpha&H00&\shad1)\frx5}Rin
-Dialogue: 1,0:02:11.32,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(297.25,90)\move(346.56043956044,25,287,25)\fry1.9120879120879\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«?????»
+Dialogue: 1,0:02:11.32,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(297.25,90)\move(346.56043956044,25,287,25)\fry1.9120879120879\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«?????Â»
 Dialogue: 1,0:02:11.90,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(297.25,90)\move(266.81318681319,35,220,35)\fry-0.63736263736264\t(\fry-10)\frx5}Rin
 Dialogue: 1,0:02:11.90,0:02:12.29,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(297.25,90)\move(322.81318681319,42,307.24175824176,35)\fry-0.63736263736264\t(\fry-2.3516483516484\alpha&H00&\shad1)\frx5}gen
 Dialogue: 1,0:02:12.29,0:02:14.03,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(297.25,90)\move(307.24175824176,35,269,35)\fry-2.3516483516484\t(\fry-10)\frx5}gen
@@ -541,8 +541,8 @@ Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00
 Dialogue: 1,0:02:15.45,0:02:17.02,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(317.15625,90)\move(293,42,269.3197586727,42)\fry10\t(\fry5.26395173454)\frx5}ma
 Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(317.15625,90)\move(340,42,240,42)\fry10\t(\fry-10)\frx5\t(2000,2530,\c&H474750&\3c&H474750&\alpha&H44&)}u
 Dialogue: 1,0:02:15.45,0:02:17.45,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(317.15625,90)\move(340,42,309.83408748115,42)\fry10\t(\fry3.9668174962293)\frx5}u
-Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(317.15625,90)\move(370,42,270,42)\fry10\t(\fry-10)\frx5\t(2530,2930,\c&H474750&\3c&H474750&\alpha&H44&)}Flü
-Dialogue: 1,0:02:15.45,0:02:17.98,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(317.15625,90)\move(370,42,331.84012066365,42)\fry10\t(\fry2.36802413273)\frx5}Flü
+Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(317.15625,90)\move(370,42,270,42)\fry10\t(\fry-10)\frx5\t(2530,2930,\c&H474750&\3c&H474750&\alpha&H44&)}FlÃ¼
+Dialogue: 1,0:02:15.45,0:02:17.98,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(317.15625,90)\move(370,42,331.84012066365,42)\fry10\t(\fry2.36802413273)\frx5}FlÃ¼
 Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(317.15625,90)\move(417,42,317,42)\fry10\t(\fry-10)\frx5\t(2930,3120,\c&H474750&\3c&H474750&\alpha&H44&)}gel
 Dialogue: 1,0:02:15.45,0:02:18.38,OP-Romaji,,0,0,0,fx,{\fad(200,0)\blur1\bord0\alpha&H33&\org(317.15625,90)\move(417,42,372.80693815988,42)\fry10\t(\fry1.1613876319759)\frx5}gel
 Dialogue: 0,0:02:15.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(200,200)\blur2\c&H00545467&\org(317.15625,90)\move(474,42,374,42)\fry10\t(\fry-10)\frx5\t(3120,3480,\c&H474750&\3c&H474750&\alpha&H44&)}der
@@ -562,9 +562,9 @@ Dialogue: 1,0:02:17.02,0:02:17.45,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\o
 Dialogue: 1,0:02:17.45,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(255.83408748115,35,186,35)\fry3.9668174962293\t(\fry-10)\frx5}ma
 Dialogue: 1,0:02:17.45,0:02:17.98,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(317.15625,90)\move(309.83408748115,42,294.84012066365,35)\fry3.9668174962293\t(\fry2.36802413273\alpha&H00&\shad1)\frx5}u
 Dialogue: 1,0:02:17.98,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(294.84012066365,35,233,35)\fry2.36802413273\t(\fry-10)\frx5}u
-Dialogue: 1,0:02:17.98,0:02:18.38,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(317.15625,90)\move(331.84012066365,42,318.80693815988,35)\fry2.36802413273\t(\fry1.1613876319759\alpha&H00&\shad1)\frx5}Flü
-Dialogue: 1,0:02:17.98,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(317.15625,90)\move(391.84012066365,25,330,25)\fry2.36802413273\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}«????»
-Dialogue: 1,0:02:18.38,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(318.80693815988,35,263,35)\fry1.1613876319759\t(\fry-10)\frx5}Flü
+Dialogue: 1,0:02:17.98,0:02:18.38,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(317.15625,90)\move(331.84012066365,42,318.80693815988,35)\fry2.36802413273\t(\fry1.1613876319759\alpha&H00&\shad1)\frx5}FlÃ¼
+Dialogue: 1,0:02:17.98,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(100,200)\blur3\bord3\3c&H00F5FFFE&\org(317.15625,90)\move(391.84012066365,25,330,25)\fry2.36802413273\t(\fry-10)\frx5\t(100,400,\bord1\blur1\alpha&H44&\3c&H00545467&)\fnDFMaruGothic-Md\fs20}Â«????Â»
+Dialogue: 1,0:02:18.38,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(318.80693815988,35,263,35)\fry1.1613876319759\t(\fry-10)\frx5}FlÃ¼
 Dialogue: 1,0:02:18.38,0:02:18.57,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(317.15625,90)\move(372.80693815988,42,362.94117647059,35)\fry1.1613876319759\t(\fry0.58823529411765\alpha&H00&\shad1)\frx5}gel
 Dialogue: 1,0:02:18.57,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(362.94117647059,35,310,35)\fry0.58823529411765\t(\fry-10)\frx5}gel
 Dialogue: 1,0:02:18.57,0:02:18.93,OP-Romaji,,0,0,0,fx,{\blur1\bord0\alpha&H33&\org(317.15625,90)\move(426.94117647059,42,414.51131221719,35)\fry0.58823529411765\t(\fry-0.49773755656109\alpha&H00&\shad1)\frx5}der
@@ -575,7 +575,7 @@ Dialogue: 1,0:02:19.70,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\blur1\bord0\a
 Dialogue: 1,0:02:22.08,0:02:22.08,OP-Romaji,,0,0,0,fx,{\fad(0,200)\bord0\shad1\org(317.15625,90)\move(482,35,482,35)\fry-10\t(\fry-10)\frx5}heit
 Dialogue: 0,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\1a&HFF&\3a&H55&\blur3\bord3.4\fnCardo\pos(642.333,491.001)}The Wall
 Dialogue: 1,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\blur0.5\c&HFBFDFB&\3c&HFFFFFF&\fnCardo\pos(642.333,491.001)}The Wall
-Dialogue: 0,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\1a&HFF&\3a&H55&\blur3\bord3.4\fs32\fnCardo\fsp-1\3c&H000000&\pos(641.333,519.001)}————{\fsp0}Raid on Stohess District Part    {\fsp-1}————
-Dialogue: 1,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\blur0.4\c&HD5D5D5&\3c&HFFFFFF&\fs32\fnCardo\fsp-1\pos(641.333,519.001)}————{\fsp0}Raid on Stohess District Part    {\fsp-1}————
+Dialogue: 0,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\1a&HFF&\3a&H55&\blur3\bord3.4\fs32\fnCardo\fsp-1\3c&H000000&\pos(641.333,519.001)}â€”â€”â€”â€”{\fsp0}Raid on Stohess District Part    {\fsp-1}â€”â€”â€”â€”
+Dialogue: 1,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\blur0.4\c&HD5D5D5&\3c&HFFFFFF&\fs32\fnCardo\fsp-1\pos(641.333,519.001)}â€”â€”â€”â€”{\fsp0}Raid on Stohess District Part    {\fsp-1}â€”â€”â€”â€”
 Dialogue: 0,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\1a&HFF&\3a&H55&\blur3\an4\bord3.3\fnMS PMincho\fs20\pos(773.667,504.001)}?
 Dialogue: 1,0:02:36.05,0:02:41.05,Signs,,0,0,0,done,{\blur0.5\bord0.1\an4\c&HD5D5D5&\3c&HFFFFFF&\fnMS PMincho\fs20\pos(773.667,504.001)}?

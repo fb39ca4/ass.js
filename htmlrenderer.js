@@ -33,7 +33,7 @@ AssRenderer.prototype.setupCss = function() {
 
 var testDiv;
 AssRenderer.prototype.generateHTML = function() {
-  this.setupCss();
+  //this.setupCss();
   this.events = [];
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
@@ -756,7 +756,7 @@ AssRenderer.prototype.removeEvent = function(i, resetCount) {
   if (resetCount != this.resetCount) return;
   
   var event = this.events[i];
-  //if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
+  if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
 }
 
 AssRenderer.prototype.searchRule = function(name) {
