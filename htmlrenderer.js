@@ -316,6 +316,8 @@ AssRenderer.prototype.generateHTML = function() {
     AssRenderer.setAnimationDuration(timingDiv, event.duration);
     timingDiv.style.visibility = "hidden";
     timingDiv.style.pointerEvents = "auto";
+    timingDiv.style.zIndex = event.ass.layer.toString();
+    timingDiv.style.position = "absolute";
     event.html = timingDiv;
     
     //event.html.addEventListener("animationend", function(){console.log(event.animationIdentifier)}, false);
