@@ -9,7 +9,7 @@ AssRenderer = function() {
   this.setupCss();
 }
 
-AssRenderer.prototype.setupCss = function() {
+/*AssRenderer.prototype.setupCss = function() {
   if (this.css) {
     this.css.styleElement.parentNode.removeChild(this.css.styleElement);
   }
@@ -30,13 +30,57 @@ AssRenderer.prototype.setupCss = function() {
   var keyFrames = this.createKeyFramesRule(this.css.identifier + "_timing", percentages);
   keyFrames[0].visibility = "visible";
   keyFrames[1].visibility = "visible";
+}*/
+
+AssRenderer.prototype.setupCss = function() {
+  if (this.css) {
+    this.css.styleElement.parentNode.removeChild(this.css.styleElement);
+  }
+  this.css = {}
+  this.css.identifier = "ass-js_" + Ass.util.randomString(8);
+  this.css.styleElements = [];
+  this.css.styleSheets = [];
+  this.css.numStyleSheets = 0;
+  this.css.numSelectors = 0;
+  this.addStyleSheet();
+  var percentages = [0, 100];
+  var keyFrames = this.createKeyFramesRule(this.css.identifier + "_timing", percentages);
+  keyFrames[0].visibility = "visible";
+  keyFrames[1].visibility = "visible";
+}
+
+AssRenderer.prototype.addStyleSheet = function() {
+  this.numSelectors = 0;
+  if (this.css.numStyleSheets < this.css.styleSheets.length) {
+    this.css.styleSheet = this.css.styleSheets[this.css.numStyleSheets];
+    this.css.numStyleSheets++;
+    return;
+  }
+  var se = document.createElement("style");
+  se.type = "text/css";
+  se.title = this.css.identifier + "_" + this.css.styleElements.length.toString();
+  document.head.appendChild(se);
+  this.css.styleElements.push(se);
+  for (var i = 0; i < document.styleSheets.length; i++) {
+    this.css.styleSheet = document.styleSheets[i];
+    if (this.css.styleSheet.title == se.title) {
+      this.css.styleSheetNumber = i;
+      this.css.styleSheets.push(this.css.styleSheet);
+      break;
+    }
+  }
+  this.css.numStyleSheets++;
+}
+
+AssRenderer.prototype.clearStyleSheet = function(ss) {
+  while (ss.cssRules.length > 0) ss.deleteRule(ss.cssRules.length - 1);
 }
 
 AssRenderer.prototype.resetCss = function() {
   if (!this.css) return;
-  //this.css.identifier = "ass-js_" + Ass.util.randomString(8);
-  //this.css.styleElement.title = this.css.identifier;
-  while (this.css.styleSheet.cssRules.length > 0) this.css.styleSheet.deleteRule(this.css.styleSheet.cssRules.length - 1);
+  this.css.numStyleSheets = 0;
+  for (var i = 0; i < this.css.styleSheets.length; i++) this.clearStyleSheet(this.css.styleSheets[i]);
+  this.addStyleSheet();
   var percentages = [0, 100];
   var keyFrames = this.createKeyFramesRule(this.css.identifier + "_timing", percentages);
   keyFrames[0].visibility = "visible";
@@ -583,7 +627,17 @@ AssRenderer.CollisionSolver.prototype.addLine = function(id, start, end, width, 
   return keyFrames;
 }*/
 
-AssRenderer.prototype.createKeyFramesRule = function(name, percentages) {  
+numKeyframeRules = 0;
+numKeyframes = 0;
+
+AssRenderer.prototype.createKeyFramesRule = function(name, percentages) {
+  this.css.numSelectors += 1 + percentages.length;
+  if (navigator.userAgent.indexOf("Trident") != -1) {
+    if (this.css.numSelectors > 65000) {
+      this.addStyleSheet();
+      this.css.numSelectors = 1 + percentages.length;
+    }
+  }
   var cssRuleIndex = this.css.styleSheet.cssRules.length;
   var keyFramesText = [];
   for (var i = 0; i < percentages.length; i++) {
@@ -595,6 +649,7 @@ AssRenderer.prototype.createKeyFramesRule = function(name, percentages) {
   var keyFrames = [];
   for (var i = 0; i < percentages.length; i++) {
     keyFrames.push(keyFramesRule.cssRules[i].style);
+    if (typeof(keyFramesRule.cssRules[i].style) == "object") numKeyframes++;
   }
   
   return keyFrames;

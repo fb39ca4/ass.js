@@ -48,7 +48,7 @@ window.onload = function(){
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
   
-  loadSubtitlesFromURL("test/AttackOnTitanOP2.ass");
+  loadSubtitlesFromURL("test/AttackOnTitan_OP2.ass");
 }
 
 function loadVideoFromURL(url) {
@@ -96,12 +96,13 @@ function changeVideo(btn) {
 <body>
   <div id="body_wrapper">
     <div id="video_div">
-      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered video-wrapper" src="test/AttackOnTitanOP2.mp4"></video> 
+      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered video-wrapper" src="test/AttackOnTitan_OP2.mp4"></video> 
     </div>
       
     <div id="top_bar">
-      <button onclick="changeVideo(this)" vid="test/HennekoOP.mp4" sub="test/HennekoOP.ass">Henneko OP</button>
-      <button onclick="changeVideo(this)" vid="test/AttackOnTitanOP2.mp4" sub="test/AttackOnTitanOP2.ass">Attack on Titan OP 2</button>
+      <button onclick="changeVideo(this)" vid="test/Henneko_OP.mp4" sub="test/Henneko_OP.ass">Henneko OP</button>
+      <button onclick="changeVideo(this)" vid="test/AttackOnTitan_OP2.mp4" sub="test/AttackOnTitan_OP2.ass">Attack on Titan OP 2</button>
+      <button onclick="changeVideo(this)" vid="test/RailgunS_OP1.mp4" sub="test/RailgunS_OP1.ass">Railgun S OP 1</button>
       <br>Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
       Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
     </div>
