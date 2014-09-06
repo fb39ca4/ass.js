@@ -4,6 +4,7 @@ AssRenderer = function() {
   
   this.resetCount = 0;
   this.seekQueued = false;
+  this.displayAheadTime = 1;
   
   this.setupCss();
 }
@@ -31,9 +32,20 @@ AssRenderer.prototype.setupCss = function() {
   keyFrames[1].visibility = "visible";
 }
 
+AssRenderer.prototype.resetCss = function() {
+  if (!this.css) return;
+  //this.css.identifier = "ass-js_" + Ass.util.randomString(8);
+  //this.css.styleElement.title = this.css.identifier;
+  while (this.css.styleSheet.cssRules.length > 0) this.css.styleSheet.deleteRule(this.css.styleSheet.cssRules.length - 1);
+  var percentages = [0, 100];
+  var keyFrames = this.createKeyFramesRule(this.css.identifier + "_timing", percentages);
+  keyFrames[0].visibility = "visible";
+  keyFrames[1].visibility = "visible";
+}
+
 var testDiv;
 AssRenderer.prototype.generateHTML = function() {
-  //this.setupCss();
+  this.resetCss();
   this.events = [];
   for (var i = 0; i < this.assData.dialogue.length; i++) {
     var event = {};
@@ -692,7 +704,7 @@ AssRenderer.prototype.seek = function() {
     else if (this.events[i].endTime > this.videoElement.currentTime) {
       setTimeout(function() {
         this.displayEvent(i, this.resetCount);
-      }.bind(this), 1000 * Math.max(0, this.events[i].startTime - this.videoElement.currentTime), false);
+      }.bind(this), 1000 * Math.max(0, this.events[i].startTime - this.videoElement.currentTime - this.displayAheadTime), false);
       break;
     }
   }
@@ -733,11 +745,11 @@ AssRenderer.prototype.displayEvent = function(i, resetCount) {
   var event = this.events[i];
   if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
   AssRenderer.setAnimationDuration(event.html, event.duration);
+  this.subtitleDiv.appendChild(event.html);
   var animationDelay = (event.startTime - this.videoElement.currentTime).toString() + "s";
   event.html.style.animationDelay = animationDelay;
   event.html.style.webkitAnimationDelay = animationDelay;
-  this.subtitleDiv.appendChild(event.html);
-  setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.duration), false);
+  setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.endTime - this.videoElement.currentTime), false);
   
   console.log("Line " + event.ass.lineNumber.toString() + ": " + secondsToHMS(event.startTime) + " at " + secondsToHMS(this.videoElement.currentTime) + ' ("' + event.ass.plainText + '")');
   
@@ -746,7 +758,7 @@ AssRenderer.prototype.displayEvent = function(i, resetCount) {
     if (this.videoElement.paused == true) return;
     setTimeout(function() {
       this.displayEvent(i + 1, resetCount);
-    }.bind(this), 1000 * Math.max(0, this.events[i + 1].startTime - this.videoElement.currentTime), false);
+    }.bind(this), 1000 * Math.max(0, this.events[i + 1].startTime - this.videoElement.currentTime - this.displayAheadTime), false);
   }
   else this.displayEvent(i + 1, resetCount);
   
