@@ -6,6 +6,12 @@ AssRenderer = function() {
   this.seekQueued = false;
   this.displayAheadTime = 1;
   
+  this.progressDisplay = document.createElement("div");
+  this.progressDisplay.style.fontSize = "96px";
+  this.progressDisplay.style.position = "absolute";
+  this.progressDisplay.style.color = "white";
+  this.setSubtitleDiv(document.createElement("div"));
+  
   this.setupCss();
 }
 
@@ -104,6 +110,7 @@ AssRenderer.prototype.generateHTML = function() {
     else return a.startTime - b.startTime;
   };
   this.events.sort(sortFunction);
+  this.setSubtitleDiv(this.subtitleDiv);
   
   
   testDiv = document.createElement("div");
@@ -125,8 +132,8 @@ AssRenderer.prototype.generateHTML = function() {
   testDiv.style.visibility = "hidden";
   
   document.body.appendChild(testDiv);
-  
-  for (var i = 0; i < this.events.length; i++) {
+  this.collisionSolvers = [];
+  var processEvent = function(i) {
     var event = this.events[i];
     
     event.animationIdentifier = this.css.identifier + "_line" + event.ass.lineNumber.toString();
@@ -143,44 +150,22 @@ AssRenderer.prototype.generateHTML = function() {
     }
     AssRenderer.setAnimationInherit(textDiv);
     textDiv.style.textAlign = event.ass.alignmentH;
-    textDiv.style.position = "absolute";
     textDiv.style.maxWidth = (this.assData.scriptInfo.playResX - event.ass.marginL - event.ass.marginR).toString() + "px";
-    
+    textDiv.style.position = "absolute";
     testDiv.appendChild(textDiv);
     AssRenderer.optimizeWidth(textDiv);
     event.width = textDiv.offsetWidth;
     event.height = textDiv.offsetHeight;
     testDiv.removeChild(textDiv);
-    
-  }
-  
-  var collisionSolvers = [];
-  this.collisionSolvers = collisionSolvers;
-  var activeLayers = [];
-  for (var i = 0; i < this.events.length; i++) {
-    var event = this.events[i];
-    if (event.ass.pos.mode != "auto") continue;
-    if (typeof(collisionSolvers[event.ass.layer]) == "undefined") {
-      collisionSolvers[event.ass.layer] = new AssRenderer.CollisionSolver(this.assData.scriptInfo.playResX, this.assData.scriptInfo.playResY);
-      activeLayers.push(event.ass.layer);
+
+    if (event.ass.pos.mode == "auto") {
+      if (typeof(this.collisionSolvers[event.ass.layer]) == "undefined") {
+        this.collisionSolvers[event.ass.layer] = new AssRenderer.CollisionSolver(this.assData.scriptInfo.playResX, this.assData.scriptInfo.playResY);
+      }
+      var result = this.collisionSolvers[event.ass.layer].addLine(i, event.startTime, event.endTime, event.width, event.height, event.ass.marginL, event.ass.marginR, event.ass.marginV, event.ass.alignmentH, event.ass.alignmentV, event.ass.lineNumber);
+      event.posX = result.posX;
+      event.posY = result.posY;
     }
-    collisionSolvers[event.ass.layer].addLine(i, event.startTime, event.endTime, event.width, event.height, event.ass.marginL, event.ass.marginR, event.ass.marginV, event.ass.alignmentH, event.ass.alignmentV, event.ass.lineNumber);
-  }
-  
-  for (var i = 0; i < activeLayers.length; i++) {
-    var collisionSolver = collisionSolvers[activeLayers[i]];
-    var results = collisionSolver.results();
-    for (var j = 0; j < results.length; j++) {
-      var event = this.events[results[j].id];
-      event.posX = results[j].posX;
-      event.posY = results[j].posY;
-      //event.html.style.left = event.posX.toString() + "px";
-      //event.html.style.top = event.posY.toString() + "px";
-    }
-  }
-  
-  for (var i = 0; i < this.events.length; i++) {
-    var event = this.events[i];
     
     if (event.ass.fade.mode != "none") {
       var fadeDiv = event.html;
@@ -319,11 +304,17 @@ AssRenderer.prototype.generateHTML = function() {
     timingDiv.style.zIndex = event.ass.layer.toString();
     timingDiv.style.position = "absolute";
     event.html = timingDiv;
-    
-    //event.html.addEventListener("animationend", function(){console.log(event.animationIdentifier)}, false);
-    //testDiv.appendChild(event.html);
-  }
-  testDiv.parentNode.removeChild(testDiv);
+    var percentage = Math.round(100 * (i + 1) / this.events.length);
+    this.progressDisplay.textContent = percentage.toString() + "%";
+    if (i + 1 < this.events.length) {
+      //window.setTimeout(function() {processEvent(i + 1)}.bind(this), 1);
+      window.setZeroTimeout(function() {processEvent(i + 1)}.bind(this));
+    }
+    else {
+      this.progressDisplay.textContent = "";
+    }
+  }.bind(this);
+  processEvent(0);
 }
 
 AssRenderer.prototype.generateSpanCSS = function(assStyle, span, cssSheet, duration, keyFramesIdentifier) {
@@ -611,10 +602,8 @@ AssRenderer.CollisionSolver.prototype.addLine = function(id, start, end, width, 
     }
     if (collision == false) break;
   }
-
-  
   this.active.push(line);
-   
+  return {posX: line.posX, posY:line.posY};
 }
 
 /*AssRenderer.prototype.createKeyFramesRule = function(name, percentages) {
@@ -734,23 +723,29 @@ AssRenderer.prototype.setSubtitleDiv = function(element) {
   element.style.animationTimingFunction = "linear";
   element.style.webkitAnimationTimingFunction = "linear";
   element.style.pointerEvents = "none";
-  element.parentNode.style.overflow = "hidden";
+  if (element.parentNode) element.parentNode.style.overflow = "hidden";
+  
+  if (this.progressDisplay.parentNode) this.progressDisplay.parentNode.removeChild(this.progressDisplay);
+  element.appendChild(this.progressDisplay);
   this.scaleSubtitleDiv();
 }
 
 AssRenderer.prototype.scaleSubtitleDiv = function() {
-  var computedStyle = window.getComputedStyle(this.subtitleDiv.parentNode);
-  var scaleX = parseFloat(computedStyle.width) / this.assData.scriptInfo.playResX;
-  var scaleY = parseFloat(computedStyle.height) / this.assData.scriptInfo.playResY;
-  var scale = Math.min(scaleX, scaleY);
-  var transform = "translate(-50%, -50%) scale(" + scale.toString() + ", " + scale.toString() + ")";
-  this.subtitleDiv.style.transform = transform;
+  if (this.subtitleDiv.parentNode) {
+    var computedStyle = window.getComputedStyle(this.subtitleDiv.parentNode);
+    var scaleX = parseFloat(computedStyle.width) / this.assData.scriptInfo.playResX;
+    var scaleY = parseFloat(computedStyle.height) / this.assData.scriptInfo.playResY;
+    var scale = Math.min(scaleX, scaleY);
+    var transform = "translate(-50%, -50%) scale(" + scale.toString() + ", " + scale.toString() + ")";
+    this.subtitleDiv.style.transform = transform;
+  }
 }
 
 AssRenderer.prototype.seek = function() {
   this.resetCount++;
   this.seekQueued = false;
   while (this.subtitleDiv.firstChild) this.subtitleDiv.removeChild(this.subtitleDiv.firstChild);
+  this.subtitleDiv.appendChild(this.progressDisplay);
   
   var i;
   for (i = 0; i < this.events.length; i++) {
@@ -800,14 +795,15 @@ AssRenderer.prototype.displayEvent = function(i, resetCount) {
   if (resetCount != this.resetCount) return;
   
   var event = this.events[i];
-  if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
-  AssRenderer.setAnimationDuration(event.html, event.duration);
-  this.subtitleDiv.appendChild(event.html);
-  var animationDelay = (event.startTime - this.videoElement.currentTime).toString() + "s";
-  event.html.style.animationDelay = animationDelay;
-  event.html.style.webkitAnimationDelay = animationDelay;
-  setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.endTime - this.videoElement.currentTime), false);
-  
+  if (event.html) {
+    if (event.html.parentNode) event.html.parentNode.removeChild(event.html);
+    AssRenderer.setAnimationDuration(event.html, event.duration);
+    this.subtitleDiv.appendChild(event.html);
+    var animationDelay = (event.startTime - this.videoElement.currentTime).toString() + "s";
+    event.html.style.animationDelay = animationDelay;
+    event.html.style.webkitAnimationDelay = animationDelay;
+    setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.endTime - this.videoElement.currentTime), false);
+  }
   //console.log("Line " + event.ass.lineNumber.toString() + ": " + secondsToHMS(event.startTime) + " at " + secondsToHMS(this.videoElement.currentTime) + ' ("' + event.ass.plainText + '")');
   
   if (i + 1 >= this.events.length) return;
@@ -843,3 +839,32 @@ AssRenderer.prototype.getLine = function(number) {
 AssRenderer.generateSvg = function(points) {
   
 }
+
+var enableZeroTimeouts = function() {
+    var timeouts = [];
+    var messageName = "zero-timeout-message";
+
+    // Like setTimeout, but only takes a function argument.  There's
+    // no time argument (always zero) and no arguments (you have to
+    // use a closure).
+    function setZeroTimeout(fn) {
+        timeouts.push(fn);
+        window.postMessage(messageName, "*");
+    }
+
+    function handleMessage(event) {
+        if (event.source == window && event.data == messageName) {
+            event.stopPropagation();
+            if (timeouts.length > 0) {
+                var fn = timeouts.shift();
+                fn();
+            }
+        }
+    }
+
+    window.addEventListener("message", handleMessage, true);
+
+    // Add the one thing we want added to the window object.
+    window.setZeroTimeout = setZeroTimeout;
+};
+enableZeroTimeouts();
