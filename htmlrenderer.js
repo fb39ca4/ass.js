@@ -307,8 +307,8 @@ AssRenderer.prototype.generateHTML = function() {
     var percentage = Math.round(100 * (i + 1) / this.events.length);
     this.progressDisplay.textContent = percentage.toString() + "%";
     if (i + 1 < this.events.length) {
-      //window.setTimeout(function() {processEvent(i + 1)}.bind(this), 1);
-      window.setZeroTimeout(function() {processEvent(i + 1)}.bind(this));
+      window.setTimeout(function() {processEvent(i + 1)}.bind(this), 1);
+      //window.setZeroTimeout(function() {processEvent(i + 1)}.bind(this));
     }
     else {
       this.progressDisplay.textContent = "";
@@ -771,6 +771,7 @@ AssRenderer.prototype.scheduleSeekOld = function() {
 AssRenderer.prototype.pause = function() {
   this.subtitleDiv.style.animationPlayState = "paused";
   this.subtitleDiv.style.webkitAnimationPlayState = "paused";
+  this.progressDisplay.style.color = "white";
   this.resetCount++;
 }
 
@@ -803,7 +804,9 @@ AssRenderer.prototype.displayEvent = function(i, resetCount) {
     event.html.style.animationDelay = animationDelay;
     event.html.style.webkitAnimationDelay = animationDelay;
     setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.endTime - this.videoElement.currentTime), false);
+    this.progressDisplay.style.color = "green";
   }
+  else this.progressDisplay.style.color = "red";
   //console.log("Line " + event.ass.lineNumber.toString() + ": " + secondsToHMS(event.startTime) + " at " + secondsToHMS(this.videoElement.currentTime) + ' ("' + event.ass.plainText + '")');
   
   if (i + 1 >= this.events.length) return;
