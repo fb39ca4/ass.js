@@ -393,7 +393,7 @@ AssRenderer.prototype.generateTransformCSS = function(dialogue, div, duration, k
     var t = currentTime;
     
     var cssStyle = keyFrames[i];
-    var transform = "perspective(500px) " + "rotateY(" + assStyle.rotY.get(t) + "deg) rotateX(" + assStyle.rotX.get(t) + "deg) rotateZ(" + (-assStyle.rotZ.get(t)) + "deg)"
+    var transform = "perspective(500px) " + "scale(" + assStyle.scaleX.get(t) + ", " + assStyle.scaleY.get(t) + ") rotateY(" + assStyle.rotY.get(t) + "deg) rotateX(" + assStyle.rotX.get(t) + "deg) rotateZ(" + (-assStyle.rotZ.get(t)) + "deg)"
     cssStyle.transform = transform;
     
   }
@@ -703,7 +703,7 @@ AssRenderer.setAnimationDuration = function(element, duration) {
 AssRenderer.prototype.setVideoElement = function(element) {
   this.videoElement = element;
   this.videoElement.addEventListener("playing", function(){console.log("playing"); this.play();}.bind(this), false);
-  //this.videoElement.addEventListener("seeked", function(){console.log("seeked"); if (this.videoElement.paused == true) this.seek()}.bind(this), false);
+  this.videoElement.addEventListener("seeked", function(){console.log("seeked"); this.clearEvents();}.bind(this), false);
   this.videoElement.addEventListener("onload", function(){console.log("onload"); this.seek()}.bind(this), false);
   //this.video.addEventListener("seeked", function(){this.resetCache(this.video.currentTime);}.bind(this), false);
   //this.video.addEventListener("onload", function(){this.resetCache(this.video.currentTime);}.bind(this), false);
@@ -741,11 +741,14 @@ AssRenderer.prototype.scaleSubtitleDiv = function() {
   }
 }
 
+AssRenderer.prototype.clearEvents = function() {
+  while (this.subtitleDiv.firstChild) this.subtitleDiv.removeChild(this.subtitleDiv.firstChild);
+  this.subtitleDiv.appendChild(this.progressDisplay);
+}
+
 AssRenderer.prototype.seek = function() {
   this.resetCount++;
   this.seekQueued = false;
-  while (this.subtitleDiv.firstChild) this.subtitleDiv.removeChild(this.subtitleDiv.firstChild);
-  this.subtitleDiv.appendChild(this.progressDisplay);
   
   var i;
   for (i = 0; i < this.events.length; i++) {
