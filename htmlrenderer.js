@@ -703,7 +703,7 @@ AssRenderer.setAnimationDuration = function(element, duration) {
 AssRenderer.prototype.setVideoElement = function(element) {
   this.videoElement = element;
   this.videoElement.addEventListener("playing", function(){console.log("playing"); this.play();}.bind(this), false);
-  this.videoElement.addEventListener("seeked", function(){console.log("seeked"); if (this.videoElement.paused == true) this.seek()}.bind(this), false);
+  //this.videoElement.addEventListener("seeked", function(){console.log("seeked"); if (this.videoElement.paused == true) this.seek()}.bind(this), false);
   this.videoElement.addEventListener("onload", function(){console.log("onload"); this.seek()}.bind(this), false);
   //this.video.addEventListener("seeked", function(){this.resetCache(this.video.currentTime);}.bind(this), false);
   //this.video.addEventListener("onload", function(){this.resetCache(this.video.currentTime);}.bind(this), false);
@@ -749,11 +749,11 @@ AssRenderer.prototype.seek = function() {
   
   var i;
   for (i = 0; i < this.events.length; i++) {
-    if (this.events[i].startTime < this.videoElement.currentTime && this.events[i].endTime > this.videoElement.currentTime) {
+    /*if (this.events[i].startTime < this.videoElement.currentTime && this.events[i].endTime > this.videoElement.currentTime) {
       this.displayEvent(i, this.resetCount);
       break;
     }
-    else if (this.events[i].endTime > this.videoElement.currentTime) {
+    else*/ if (this.events[i].startTime > this.videoElement.currentTime) {
       setTimeout(function() {
         this.displayEvent(i, this.resetCount);
       }.bind(this), 1000 * Math.max(0, this.events[i].startTime - this.videoElement.currentTime - this.displayAheadTime), false);
