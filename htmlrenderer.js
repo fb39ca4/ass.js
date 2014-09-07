@@ -808,10 +808,10 @@ AssRenderer.prototype.displayEvent = function(i, resetCount) {
   event.html.style.webkitAnimationDelay = animationDelay;
   setTimeout(function() {this.removeEvent(i, resetCount)}.bind(this), 1000 * Math.max(0, event.endTime - this.videoElement.currentTime), false);
   
-  console.log("Line " + event.ass.lineNumber.toString() + ": " + secondsToHMS(event.startTime) + " at " + secondsToHMS(this.videoElement.currentTime) + ' ("' + event.ass.plainText + '")');
+  //console.log("Line " + event.ass.lineNumber.toString() + ": " + secondsToHMS(event.startTime) + " at " + secondsToHMS(this.videoElement.currentTime) + ' ("' + event.ass.plainText + '")');
   
   if (i + 1 >= this.events.length) return;
-  if (this.events[i + 1].startTime > this.videoElement.currentTime) {
+  if (this.events[i + 1].startTime - this.displayAheadTime > this.videoElement.currentTime) {
     if (this.videoElement.paused == true) return;
     setTimeout(function() {
       this.displayEvent(i + 1, resetCount);
