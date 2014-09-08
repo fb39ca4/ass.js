@@ -17,17 +17,18 @@ svg generation test
 <script>
 var test = document.getElementById("test");
 var svg;
-function createSVG() {
-  var fillColor = "paleturquoise";
+function createSVG(drawScale, drawCommands, fillColor, strokeColor, strokeWidth, blurRadius, testDiv) {
+  /*var fillColor = "paleturquoise";
   var strokeColor = "#034EFF";
   var strokeWidth = 2.5;
   var blurRadius = 3.75;
-  var drawScale = 2;
-  var strokeWidthScaled = strokeWidth * 2 /drawScale;
+  var drawScale = 2;*/
+  var strokeWidthScaled = strokeWidth * 2 / drawScale;
+  
   var svgns = "http://www.w3.org/2000/svg";
   var xlinkns = "http://www.w3.org/1999/xlink";
 
-  svg = document.createElementNS(svgns, "svg");
+  var svg = document.createElementNS(svgns, "svg");
   svg.style.display = "inline";
   svg.style.overflow = "visible";
   
@@ -37,20 +38,12 @@ function createSVG() {
   g.setAttributeNS(null, "fill-rule", "nonzero");
   svg.appendChild(g);
   
-  var svgContainer = testspan;
+  var svgContainer = testDiv;
   svgContainer.appendChild(svg);
-
-  //var coords = "M 0 16 L 5 16 L 2 11 L 3 9 L 8 16 L 16 16 L 12 9 L 3 9 L 4 7 L 11 7 L 8 2 L 10 0 L 13 5 L 16 0 L 19 0 L 14 7 L 19 15 L 24 7 L 19 0 L 22 0 L 25 5 L 28 0 L 30 2 L 27 7 L 34 7 L 35 9 L 26 9 L 22 16 L 30 16 L 35 9 L 36 11 L 33 16 L 38 16 L 38 19 L 33 19 L 36 24 L 35 26 L 30 19 L 22 19 L 26 26 L 35 26 L 34 28 L 27 28 L 30 33 L 28 35 L 25 30 L 22 35 L 19 35 L 24 28 L 19 20 L 14 28 L 19 35 L 16 35 L 13 30 L 10 35 L 8 33 L 8 33 L 11 28 L 4 28 L 3 26 L 12 26 L 16 19 L 8 19 L 3 26 L 2 24 L 5 19 L 0 19 Z"
-  
-  var coords = "m 0 0 l 2 0 l -6 -2 m -6 -2 l -4 -2 l -9 -5 m -9 -5 l -7 -5 l -13 -6 m -13 -6 l -11 -6 l -19 -8 m -19 -8 l -17 -8 l -19 -14 m -19 -14 l -17 -14 l -23 -16 m -23 -16 l -21 -16 l -26 -17 m -26 -17 l -24 -17 l -32 -21 m -32 -21 l -30 -21 l -38 -24 m -38 -24 l -36 -24 l -44 -25 m -44 -25 l -42 -25 l -49 -25 m -49 -25 l -47 -25 l -45 -30 m -45 -30 l -43 -30 l -51 -35 m -51 -35 l -49 -35 l -47 -35 m -47 -35 l -45 -35 l -42 -36 m -42 -36 l -40 -36 l -45 -38 m -45 -38 l -43 -38 l -51 -39 m -51 -39 l -49 -39 l -45 -40 m -45 -40 l -43 -40 l -45 -40 m -45 -40 l -43 -40 l -50 -40 m -50 -40 l -48 -40 l -53 -39 m -53 -39 l -51 -39 l -50 -39 m -50 -39 l -48 -39 l -47 -38 m -47 -38 l -45 -38 l -44 -44 m -44 -44 l -42 -44 l -43 -46 m -43 -46 l -41 -46 l -38 -47 m -38 -47 l -36 -47 l -35 -50 m -35 -50 l -33 -50 l -39 -51 m -39 -51 l -37 -51 l -36 -50 m -36 -50 l -34 -50 l -41 -50 m -41 -50 l -39 -50 l -46 -53 m -46 -53 l -44 -53 l -43 -52 m -43 -52 l -41 -52 l -37 -58 m -37 -58 l -35 -58 l -34 -61 m -34 -61 l -32 -61 l -38 -62 m -38 -62 l -36 -62 l -39 -63 m -39 -63 l -37 -63 l -39 -66 m -39 -66 l -37 -66 l -45 -65 m -45 -65 l -43 -65 l -43 -71 m -43 -71 l -41 -71 l -39 -76 m -39 -76 l -37 -76 l -45 -77 m -45 -77 l -43 -77 l -51 -82 m -51 -82 l -49 -82 l -51 -86 m -51 -86 l -49 -86 l -46 -87 m -46 -87 l -44 -87 l -43 -90 m -43 -90 l -41 -90 l -44 -90 m -44 -90 l -42 -90 l -38 -95 m -38 -95 l -36 -95 l -32 -94 m -32 -94 l -30 -94 l -37 -97 m -37 -97 l -35 -97 l -38 -97"
-
-  //var coords = "m 0 0 l 2 0 l 4 0 m 4 0 l 6 0 l 0 -4 m 0 -4 l 2 -4 l 1 -6 m 1 -6 l 3 -6 l 5 -11 m 5 -11 l 7 -11 l 10 -11 m 10 -11 l 12 -11 l 4 -14 m 4 -14 l 6 -14 l 7 -20 m 7 -20 l 9 -20 l 12 -24 m 12 -24 l 14 -24 l 13 -29 m 13 -29 l 15 -29 l 11 -30 m 11 -30 l 13 -30 l 11 -36 m 11 -36 l 13 -36 l 14 -39 m 14 -39 l 16 -39 l 20 -44 m 20 -44 l 22 -44 l 18 -50 m 18 -50 l 20 -50 l 13 -51 m 13 -51 l 15 -51 l 17 -57 m 17 -57 l 19 -57 l 22 -60 m 22 -60 l 24 -60 l 19 -61 m 19 -61 l 21 -61 l 15 -63 m 15 -63 l 17 -63 l 15 -65 m 15 -65 l 17 -65 l 15 -67 m 15 -67 l 17 -67 l 12 -73 m 12 -73 l 14 -73 l 18 -78 m 18 -78 l 20 -78 l 14 -82 m 14 -82 l 16 -82 l 20 -85 m 20 -85 l 22 -85 l 16 -91 m 16 -91 l 18 -91 l 15 -92 m 15 -92 l 17 -92 l 18 -97 m 18 -97 l 20 -97 l 21 -97 m 21 -97 l 23 -97 l 17 -103 m 17 -103 l 19 -103 l 15 -105 m 15 -105 l 17 -105 l 9 -109 m 9 -109 l 11 -109 l 9 -110 m 9 -110 l 11 -110 l 4 -115 m 4 -115 l 6 -115 l -1 -119 m -1 -119 l 1 -119 l 2 -121 m 2 -121 l 4 -121 l -3 -125 m -3 -125 l -1 -125 l -2 -131 m -2 -131 l 0 -131 l 4 -131 m 4 -131 l 6 -131 l -2 -136 m -2 -136 l 0 -136 l 1 -136 m 1 -136 l 3 -136 l -3 -139 m -3 -139 l -1 -139 l -2 -144 m -2 -144 l 0 -144 l 1 -150 m 1 -150 l 3 -150 l -2 -153 m -2 -153 l 0 -153 l 2 -153 m 2 -153 l 4 -153 l -3 -153 m -3 -153 l -1 -153 l -8 -153 m -8 -153 l -6 -153 l -2 -156 m -2 -156 l 0 -156 l 3 -162"
-  
-  //var coords = "m 18 30 b 24 38 36 30 28 20 b 36 14 26 0 18 10 b 12 2 0 10 8 20 b 0 26 10 40 18 30 z";
   
   var path = document.createElementNS(svgns, "path");
   path.setAttributeNS(null, "id", "path");
-  path.setAttributeNS(null, 'd', coords.toUpperCase());
+  path.setAttributeNS(null, 'd', drawCommands.toUpperCase());
   path.setAttributeNS(null, "transform", "scale(" + drawScale.toString() + ")");
   defs.appendChild(path);
   
@@ -76,25 +69,31 @@ function createSVG() {
   gaussian.setAttributeNS(null, "stdDeviation", blurRadius);
   blur.appendChild(gaussian);
   
-  var stroke = document.createElementNS(svgns, "use");
-  stroke.setAttributeNS(xlinkns, "xlink:href", "#path");
-  stroke.setAttributeNS(null, "stroke", strokeColor);
-  stroke.setAttributeNS(null, "fill", strokeColor);
-  stroke.setAttributeNS(null, "stroke-width", strokeWidthScaled);
-  stroke.setAttributeNS(null, "stroke-linejoin", "round");
-  stroke.setAttributeNS(null, "filter", "url(#blur)");
-  g.appendChild(stroke);
+  if (strokeWidth > 0) {
+    var stroke = document.createElementNS(svgns, "use");
+    stroke.setAttributeNS(xlinkns, "xlink:href", "#path");
+    stroke.setAttributeNS(null, "stroke", strokeColor);
+    stroke.setAttributeNS(null, "fill", strokeColor);
+    stroke.setAttributeNS(null, "stroke-width", strokeWidthScaled);
+    stroke.setAttributeNS(null, "stroke-linejoin", "round");
+    stroke.setAttributeNS(null, "stroke-linecap", "round");
+    stroke.setAttributeNS(null, "filter", "url(#blur)");
+    g.appendChild(stroke);
+  }
   
   var fill = document.createElementNS(svgns, "use");
   fill.setAttributeNS(xlinkns, "xlink:href", "#path");
   fill.setAttributeNS(null, "fill-opacity", 1.0);
   fill.setAttributeNS(null, "fill", fillColor);
-  //fill.setAttributeNS(null, "filter", "url(#blur)");
+  if (strokeWidth <= 0) fill.setAttributeNS(null, "filter", "url(#blur)");
   g.appendChild(fill);
    
   svg.style.width = (bBoxScaled.x + bBoxScaled.width).toString() + "px";
   svg.style.height = (bBoxScaled.y + bBoxScaled.height).toString() + "px";
-  console.log(bBoxScaled);
+  
+  svgContainer.removeChild(svg);
+  return svg;
 }
-createSVG();
+var coords = "m 0 0 l 2 0 l -6 -2 m -6 -2 l -4 -2 l -9 -5 m -9 -5 l -7 -5 l -13 -6 m -13 -6 l -11 -6 l -19 -8 m -19 -8 l -17 -8 l -19 -14 m -19 -14 l -17 -14 l -23 -16 m -23 -16 l -21 -16 l -26 -17 m -26 -17 l -24 -17 l -32 -21 m -32 -21 l -30 -21 l -38 -24 m -38 -24 l -36 -24 l -44 -25 m -44 -25 l -42 -25 l -49 -25 m -49 -25 l -47 -25 l -45 -30 m -45 -30 l -43 -30 l -51 -35 m -51 -35 l -49 -35 l -47 -35 m -47 -35 l -45 -35 l -42 -36 m -42 -36 l -40 -36 l -45 -38 m -45 -38 l -43 -38 l -51 -39 m -51 -39 l -49 -39 l -45 -40 m -45 -40 l -43 -40 l -45 -40 m -45 -40 l -43 -40 l -50 -40 m -50 -40 l -48 -40 l -53 -39 m -53 -39 l -51 -39 l -50 -39 m -50 -39 l -48 -39 l -47 -38 m -47 -38 l -45 -38 l -44 -44 m -44 -44 l -42 -44 l -43 -46 m -43 -46 l -41 -46 l -38 -47 m -38 -47 l -36 -47 l -35 -50 m -35 -50 l -33 -50 l -39 -51 m -39 -51 l -37 -51 l -36 -50 m -36 -50 l -34 -50 l -41 -50 m -41 -50 l -39 -50 l -46 -53 m -46 -53 l -44 -53 l -43 -52 m -43 -52 l -41 -52 l -37 -58 m -37 -58 l -35 -58 l -34 -61 m -34 -61 l -32 -61 l -38 -62 m -38 -62 l -36 -62 l -39 -63 m -39 -63 l -37 -63 l -39 -66 m -39 -66 l -37 -66 l -45 -65 m -45 -65 l -43 -65 l -43 -71 m -43 -71 l -41 -71 l -39 -76 m -39 -76 l -37 -76 l -45 -77 m -45 -77 l -43 -77 l -51 -82 m -51 -82 l -49 -82 l -51 -86 m -51 -86 l -49 -86 l -46 -87 m -46 -87 l -44 -87 l -43 -90 m -43 -90 l -41 -90 l -44 -90 m -44 -90 l -42 -90 l -38 -95 m -38 -95 l -36 -95 l -32 -94 m -32 -94 l -30 -94 l -37 -97 m -37 -97 l -35 -97 l -38 -97"
+testspan.appendChild(createSVG(2.5, coords, "paleturquoise", "rgba(3, 78, 255, 1.0)", 2.5, 2.5, document.body));
 </script>

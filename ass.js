@@ -140,18 +140,16 @@ Ass.prototype.applyStyles = function() {
     for (var j = 0; j < dialogue.taggedText.length; j++) {
       switch (dialogue.taggedText[j].type) {
         case "text":
-          if (drawMode == 0) {
+          if (true) {
             var span = document.createElement("span");
             modifiedStyle.toCss(span.style);
             span.innerHTML = dialogue.taggedText[j].text;
             div.appendChild(span);
             
-            dialogue.styledText.push({text: dialogue.taggedText[j].text, style: modifiedStyle, drawMode: 0});
+            dialogue.styledText.push({text: dialogue.taggedText[j].text, style: modifiedStyle, drawMode: drawMode});
             if (dialogue.firstStyle == null) dialogue.firstStyle = modifiedStyle;
             modifiedStyle = Ass.AssStyle.fromParent(modifiedStyle);
             modifiedStyle.baseStyle = originalStyle;
-          }
-          else {
           }
           break;
         case "p":

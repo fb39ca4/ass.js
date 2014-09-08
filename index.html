@@ -65,8 +65,11 @@ function loadSubtitlesFromURL(url) {
       loadAss(xhr.responseText);
     }
   }
-  xhr.open("GET", url, true);
-  xhr.send();
+  try {
+    xhr.open("GET", url, true);
+    xhr.send();
+  }
+  catch(err) {}
 }
 
 function loadVideoFile() {

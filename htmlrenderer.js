@@ -129,7 +129,7 @@ AssRenderer.prototype.generateHTML = function() {
   testDiv.style.animationTimingFunction = "linear";
   testDiv.style.animationDelay = "0s";
   testDiv.style.pointerEvents = "none";
-  testDiv.style.visibility = "hidden";
+  testDiv.style.opacity = "0";
   
   document.body.appendChild(testDiv);
   this.collisionSolvers = [];
@@ -141,12 +141,31 @@ AssRenderer.prototype.generateHTML = function() {
     event.html = textDiv;
     for (var j = 0; j < event.ass.styledText.length; j++) {
       var textSegment = event.ass.styledText[j];
-      var span = document.createElement("span");
-      span.innerHTML = textSegment.text;
-      //textSegment.style.toCss(span.style);
-      textDiv.appendChild(span);
-      AssRenderer.setAnimationInherit(span);
-      this.generateSpanCSS(textSegment.style, span, this.css.styleSheet, event.duration, event.animationIdentifier + "_span" + j.toString());      
+      if (textSegment.drawMode == 0) {
+        var span = document.createElement("span");
+        span.innerHTML = textSegment.text;
+        //textSegment.style.toCss(span.style);
+        textDiv.appendChild(span);
+        AssRenderer.setAnimationInherit(span);
+        this.generateSpanCSS(textSegment.style, span, this.css.styleSheet, event.duration, event.animationIdentifier + "_span" + j.toString());      
+      }
+      else {
+        var rgba = function(r, g, b, a) {
+          var colorString = "rgba(" + Math.round(r).toString();
+          colorString += "," + Math.round(g).toString();
+          colorString += "," + Math.round(b).toString();
+          colorString += "," + (1 - a / 255.0).toString();
+          return colorString + ")";
+        }
+        var style = textSegment.style;
+        var drawScale = Math.pow(2, textSegment.drawMode - 1);
+        var fillColor = rgba(style.fillColorR.get(0), style.fillColorG.get(0), style.fillColorB.get(0), style.fillColorA.get(0));
+        var outlineColor = rgba(style.outlineColorR.get(0), style.outlineColorG.get(0), style.outlineColorB.get(0), style.outlineColorA.get(0));
+        var outlineWidth = (style.outlineX.get(0) + style.outlineY.get(0)) / 2;
+        var blurRadius = style.blur.get(0);
+        var svg = AssRenderer.generateSvg(drawScale, textSegment.text, fillColor, outlineColor, outlineWidth, blurRadius, testDiv);
+        textDiv.appendChild(svg);
+      }
     }
     AssRenderer.setAnimationInherit(textDiv);
     textDiv.style.textAlign = event.ass.alignmentH;
@@ -842,8 +861,82 @@ AssRenderer.prototype.getLine = function(number) {
   }
 }
 
-AssRenderer.generateSvg = function(points) {
+AssRenderer.generateSvg = function(drawScale, drawCommands, fillColor, strokeColor, strokeWidth, blurRadius, testDiv) {
+  /*var fillColor = "paleturquoise";
+  var strokeColor = "#034EFF";
+  var strokeWidth = 2.5;
+  var blurRadius = 3.75;
+  var drawScale = 2;*/
+  var strokeWidthScaled = strokeWidth * 2 / drawScale;
   
+  var svgns = "http://www.w3.org/2000/svg";
+  var xlinkns = "http://www.w3.org/1999/xlink";
+
+  var svg = document.createElementNS(svgns, "svg");
+  svg.style.display = "inline";
+  svg.style.overflow = "visible";
+  
+  var defs = document.createElementNS (svgns, "defs");
+  svg.appendChild (defs);
+  var g = document.createElementNS (svgns, "g");
+  g.setAttributeNS(null, "fill-rule", "nonzero");
+  svg.appendChild(g);
+  
+  var svgContainer = testDiv;
+  svgContainer.appendChild(svg);
+  
+  var path = document.createElementNS(svgns, "path");
+  path.setAttributeNS(null, "id", "path");
+  path.setAttributeNS(null, 'd', drawCommands.toUpperCase());
+  path.setAttributeNS(null, "transform", "scale(" + drawScale.toString() + ")");
+  defs.appendChild(path);
+  
+  var testPath = document.createElementNS(svgns, "path");
+  testPath.setAttributeNS(null, 'd', drawCommands);
+  g.appendChild(testPath);
+  var bBox = testPath.getBBox();
+  g.removeChild(testPath);
+  bBoxScaled = {x:bBox.x * drawScale, y:bBox.y * drawScale, width:bBox.width * drawScale, height:bBox.height * drawScale};
+  var filterEnlarge = blurRadius * 2 + strokeWidth;
+  
+  var blur = document.createElementNS(svgns, "filter");
+  blur.setAttributeNS(null, "id", "blur");
+  blur.setAttributeNS(null, "filterUnits", "userSpaceOnUse")
+  blur.setAttributeNS(null, "y", bBoxScaled.y - filterEnlarge);
+  blur.setAttributeNS(null, "x", bBoxScaled.x - filterEnlarge);
+  blur.setAttributeNS(null, "height", bBoxScaled.height + 2 * filterEnlarge);
+  blur.setAttributeNS(null, "width", bBoxScaled.width + 2 * filterEnlarge);
+  defs.appendChild(blur);
+  
+  var gaussian = document.createElementNS(svgns, "feGaussianBlur");
+  gaussian.setAttributeNS(null, "in", "SourceGraphic");
+  gaussian.setAttributeNS(null, "stdDeviation", blurRadius);
+  blur.appendChild(gaussian);
+  
+  if (strokeWidth > 0) {
+    var stroke = document.createElementNS(svgns, "use");
+    stroke.setAttributeNS(xlinkns, "xlink:href", "#path");
+    stroke.setAttributeNS(null, "stroke", strokeColor);
+    stroke.setAttributeNS(null, "fill", strokeColor);
+    stroke.setAttributeNS(null, "stroke-width", strokeWidthScaled);
+    stroke.setAttributeNS(null, "stroke-linejoin", "round");
+    stroke.setAttributeNS(null, "stroke-linecap", "round");
+    stroke.setAttributeNS(null, "filter", "url(#blur)");
+    g.appendChild(stroke);
+  }
+  
+  var fill = document.createElementNS(svgns, "use");
+  fill.setAttributeNS(xlinkns, "xlink:href", "#path");
+  fill.setAttributeNS(null, "fill-opacity", 1.0);
+  fill.setAttributeNS(null, "fill", fillColor);
+  if (strokeWidth <= 0) fill.setAttributeNS(null, "filter", "url(#blur)");
+  g.appendChild(fill);
+   
+  svg.style.width = (bBoxScaled.x + bBoxScaled.width).toString() + "px";
+  svg.style.height = (bBoxScaled.y + bBoxScaled.height).toString() + "px";
+  
+  svgContainer.removeChild(svg);
+  return svg;
 }
 
 var enableZeroTimeouts = function() {
