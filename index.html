@@ -27,7 +27,8 @@ var assRenderer = new AssRenderer();
 var hideFileInputTimeout;
 
 window.onload = function(){
-  //console.log("window loaded");
+  if (navigator.userAgent.toLowerCase().indexOf("webkit") != -1) window.alert("ass.js is only compatible with Firefox and IE11");
+  else if (navigator.userAgent.toLowerCase().indexOf("msie 10") != -1) window.alert("ass.js is only compatible with Firefox and IE11");
   video_player = document.getElementById('video_player');
   subtitle_div = document.getElementById('subtitle_div');
   subtitle_fileinput = document.getElementById('subtitle_fileinput');

@@ -948,7 +948,6 @@ AssRenderer.prototype.generateSvg = function(drawScale, drawCommands, style, key
     var currentTime = duration * i / numKeyFrames;
     var t = currentTime;
     var fillColorAn = rgba(style.fillColorR.get(t), style.fillColorG.get(t), style.fillColorB.get(t), style.fillColorA.get(t));
-    console.log(fillColorAn);
     var outlineColorAn = rgba(style.outlineColorR.get(t), style.outlineColorG.get(t), style.outlineColorB.get(t), style.outlineColorA.get(t));
     fillKeyFrames[i].fill = fillColorAn;
     strokeKeyFrames[i].fill = outlineColorAn;
