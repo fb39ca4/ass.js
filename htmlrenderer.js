@@ -149,21 +149,9 @@ AssRenderer.prototype.generateHTML = function() {
         AssRenderer.setAnimationInherit(span);
         this.generateSpanCSS(textSegment.style, span, this.css.styleSheet, event.duration, event.animationIdentifier + "_span" + j.toString());      
       }
-      else {
-        var rgba = function(r, g, b, a) {
-          var colorString = "rgba(" + Math.round(r).toString();
-          colorString += "," + Math.round(g).toString();
-          colorString += "," + Math.round(b).toString();
-          colorString += "," + (1 - a / 255.0).toString();
-          return colorString + ")";
-        }
-        var style = textSegment.style;
+      else {        
         var drawScale = Math.pow(2, textSegment.drawMode - 1);
-        var fillColor = rgba(style.fillColorR.get(0), style.fillColorG.get(0), style.fillColorB.get(0), style.fillColorA.get(0));
-        var outlineColor = rgba(style.outlineColorR.get(0), style.outlineColorG.get(0), style.outlineColorB.get(0), style.outlineColorA.get(0));
-        var outlineWidth = (style.outlineX.get(0) + style.outlineY.get(0)) / 2;
-        var blurRadius = style.blur.get(0);
-        var svg = AssRenderer.generateSvg(drawScale, textSegment.text, fillColor, outlineColor, outlineWidth, blurRadius, testDiv);
+        var svg = this.generateSvg(drawScale, textSegment.text, textSegment.style, event.animationIdentifier + "_span" + j.toString(), event.duration, testDiv);
         textDiv.appendChild(svg);
       }
     }
@@ -326,8 +314,8 @@ AssRenderer.prototype.generateHTML = function() {
     var percentage = Math.round(100 * (i + 1) / this.events.length);
     this.progressDisplay.textContent = percentage.toString() + "%";
     if (i + 1 < this.events.length) {
-      window.setTimeout(function() {processEvent(i + 1)}.bind(this), 1);
-      //window.setZeroTimeout(function() {processEvent(i + 1)}.bind(this));
+      //window.setTimeout(function() {processEvent(i + 1)}.bind(this), 1);
+      window.setZeroTimeout(function() {processEvent(i + 1)}.bind(this));
     }
     else {
       this.progressDisplay.textContent = "";
@@ -491,7 +479,7 @@ else {
   }
   AssRenderer.textShadows.generateOutlineOffsets = function() {
     AssRenderer.textShadows.outlineOffsets = [];
-    for (var i = 0; i < Math.PI * 2; i += Math.PI / 6) {
+    for (var i = 0; i < Math.PI * 2; i += Math.PI / 3) {
       AssRenderer.textShadows.outlineOffsets.push({x: Math.round(Math.cos(i) * 1000) / 1000, y: Math.round(Math.sin(i) * 1000) / 1000});
     }
   }
@@ -861,12 +849,19 @@ AssRenderer.prototype.getLine = function(number) {
   }
 }
 
-AssRenderer.generateSvg = function(drawScale, drawCommands, fillColor, strokeColor, strokeWidth, blurRadius, testDiv) {
-  /*var fillColor = "paleturquoise";
-  var strokeColor = "#034EFF";
-  var strokeWidth = 2.5;
-  var blurRadius = 3.75;
-  var drawScale = 2;*/
+AssRenderer.prototype.generateSvg = function(drawScale, drawCommands, style, keyFramesIdentifier, duration, testDiv) {
+  var rgba = function(r, g, b, a) {
+    var colorString = "rgba(" + Math.round(r).toString();
+    colorString += "," + Math.round(g).toString();
+    colorString += "," + Math.round(b).toString();
+    colorString += "," + (1 - a / 255.0).toString();
+    return colorString + ")";
+  }
+  var fillColor = rgba(style.fillColorR.get(0), style.fillColorG.get(0), style.fillColorB.get(0), style.fillColorA.get(0));
+  var strokeColor = rgba(style.outlineColorR.get(0), style.outlineColorG.get(0), style.outlineColorB.get(0), style.outlineColorA.get(0));
+  var strokeWidth = (style.outlineX.get(0) + style.outlineY.get(0)) / 2;
+  var blurRadius = style.blur.get(0);
+  
   var strokeWidthScaled = strokeWidth * 2 / drawScale;
   
   var svgns = "http://www.w3.org/2000/svg";
@@ -875,11 +870,13 @@ AssRenderer.generateSvg = function(drawScale, drawCommands, fillColor, strokeCol
   var svg = document.createElementNS(svgns, "svg");
   svg.style.display = "inline";
   svg.style.overflow = "visible";
+  AssRenderer.setAnimationInherit(svg);
   
   var defs = document.createElementNS (svgns, "defs");
   svg.appendChild (defs);
   var g = document.createElementNS (svgns, "g");
   g.setAttributeNS(null, "fill-rule", "nonzero");
+  AssRenderer.setAnimationInherit(g);
   svg.appendChild(g);
   
   var svgContainer = testDiv;
@@ -921,7 +918,8 @@ AssRenderer.generateSvg = function(drawScale, drawCommands, fillColor, strokeCol
     stroke.setAttributeNS(null, "stroke-width", strokeWidthScaled);
     stroke.setAttributeNS(null, "stroke-linejoin", "round");
     stroke.setAttributeNS(null, "stroke-linecap", "round");
-    stroke.setAttributeNS(null, "filter", "url(#blur)");
+    AssRenderer.setAnimationInherit(stroke);
+    //stroke.setAttributeNS(null, "filter", "url(#blur)");
     g.appendChild(stroke);
   }
   
@@ -929,13 +927,36 @@ AssRenderer.generateSvg = function(drawScale, drawCommands, fillColor, strokeCol
   fill.setAttributeNS(xlinkns, "xlink:href", "#path");
   fill.setAttributeNS(null, "fill-opacity", 1.0);
   fill.setAttributeNS(null, "fill", fillColor);
-  if (strokeWidth <= 0) fill.setAttributeNS(null, "filter", "url(#blur)");
+  AssRenderer.setAnimationInherit(fill);
+  //if (strokeWidth <= 0) fill.setAttributeNS(null, "filter", "url(#blur)");
   g.appendChild(fill);
    
   svg.style.width = (bBoxScaled.x + bBoxScaled.width).toString() + "px";
   svg.style.height = (bBoxScaled.y + bBoxScaled.height).toString() + "px";
   
   svgContainer.removeChild(svg);
+  
+  var numKeyFrames = 10;
+  var percentages = [];
+  for (var i = 0; i <= numKeyFrames; i++) {
+    percentages.push(100 * i / numKeyFrames);
+  }
+  fillKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_fill", percentages);
+  fk = fillKeyFrames;
+  strokeKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_stroke", percentages);
+  for (var i = 0; i < numKeyFrames; i++) {
+    var currentTime = duration * i / numKeyFrames;
+    var t = currentTime;
+    var fillColorAn = rgba(style.fillColorR.get(t), style.fillColorG.get(t), style.fillColorB.get(t), style.fillColorA.get(t));
+    console.log(fillColorAn);
+    var outlineColorAn = rgba(style.outlineColorR.get(t), style.outlineColorG.get(t), style.outlineColorB.get(t), style.outlineColorA.get(t));
+    fillKeyFrames[i].fill = fillColorAn;
+    strokeKeyFrames[i].fill = outlineColorAn;
+    strokeKeyFrames[i].stroke = outlineColorAn;
+  }
+  
+  fill.style.animationName = keyFramesIdentifier + "_fill";
+  stroke.style.animationName = keyFramesIdentifier + "_stroke";
   return svg;
 }
 
