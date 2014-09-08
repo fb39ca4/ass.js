@@ -36,9 +36,6 @@ window.onload = function(){
   video_div = document.getElementById('video_div');
   videoJsObj = videojs("video_player", {}, null);
 	
-	//window.onresize = resizeVideo;
-	//video_player.addEventListener("loadedmetadata", resizeVideo, false);
-	//if (!window.addEventListener) window.addEventListener = window.attachEvent;
 	window.addEventListener("resize", function(){if (typeof(assRenderer) != "undefined") assRenderer.scaleSubtitleDiv();}, false)
   
   window.onmousemove = function() {
@@ -49,7 +46,12 @@ window.onload = function(){
   assRenderer.setSubtitleDiv(video_div.getElementsByClassName("vjs-text-track-display")[0]);
   assRenderer.setVideoElement(video_player);
   
-  loadSubtitlesFromURL("test/AttackOnTitan_OP2.ass");
+  var urlParams = getUrlParams();
+  if (!urlParams.vid) urlParams.vid = "AttackOnTitan_OP2.mp4";
+  if (!urlParams.sub) urlParams.sub = "AttackOnTitan_OP2.ass";
+  
+  loadSubtitlesFromURL("test/" + urlParams.sub);
+  loadVideoFromURL("test/" + urlParams.vid);
 }
 
 function loadVideoFromURL(url) {
@@ -60,7 +62,6 @@ function loadSubtitlesFromURL(url) {
   var xhr = new XMLHttpRequest();
   xhr.overrideMimeType("text/plain; charset=utf-8");
   xhr.onreadystatechange = function() {
-    //console.log(xhr.readyState, xhr.status);
     if (xhr.readyState == 4 && xhr.status == 200) {
       loadAss(xhr.responseText);
     }
@@ -93,6 +94,17 @@ function changeVideo(btn) {
   loadSubtitlesFromURL(btn.getAttribute("sub"));
 }
 
+function getUrlParams() {
+  var raw = window.location.search.substring(1).split("&");
+  var processed = {};
+  for (var i = 0; i < raw.length; i++) {
+    var name = raw[i].substring(0, raw[i].indexOf("="));
+    var arg = raw[i].substring(raw[i].indexOf("=") + 1);
+    if (name) processed[name] = arg;
+  }
+  return processed;
+}
+
 </script>
 
 </head>
@@ -100,13 +112,13 @@ function changeVideo(btn) {
 <body>
   <div id="body_wrapper">
     <div id="video_div">
-      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered video-wrapper" src="test/AttackOnTitan_OP2.mp4"></video> 
+      <video id="video_player" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered video-wrapper" src=""></video> 
     </div>
       
     <div id="top_bar">
-      <button onclick="changeVideo(this)" vid="test/Henneko_OP.mp4" sub="test/Henneko_OP.ass">Henneko OP</button>
-      <button onclick="changeVideo(this)" vid="test/AttackOnTitan_OP2.mp4" sub="test/AttackOnTitan_OP2.ass">Attack on Titan OP 2</button>
-      <button onclick="changeVideo(this)" vid="test/RailgunS_OP1.mp4" sub="test/RailgunS_OP1.ass">Railgun S OP 1</button>
+      <a href="index.html?vid=Henneko_OP.mp4&sub=Henneko_OP.ass">Henneko OP</a>
+      <a href="index.html?vid=AttackOnTitan_OP2.mp4&sub=AttackOnTitan_OP2.ass">Attack on Titan OP 2</a>
+      <a href="index.html?vid=RailgunS_OP1.mp4&sub=RailgunS_OP1.ass">Railgun S OP 1</a>
       <br>Subtitle: <input type="file" id="subtitle_fileinput" style="" onchange="loadSubtitleFile()">
       Video: <input type="file" id="video_fileinput" accept="*/*" onchange="loadVideoFile()">
     </div>
