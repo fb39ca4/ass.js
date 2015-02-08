@@ -884,7 +884,7 @@ AssRenderer.prototype.generateSvg = function(drawScale, drawCommands, style, key
   
   var path = document.createElementNS(svgns, "path");
   path.setAttributeNS(null, "id", "path");
-  path.setAttributeNS(null, 'd', drawCommands.toUpperCase());
+  path.setAttributeNS(null, 'd', drawCommands.toUpperCase().replace("B", "C"));
   path.setAttributeNS(null, "transform", "scale(" + drawScale.toString() + ")");
   defs.appendChild(path);
   
@@ -893,7 +893,7 @@ AssRenderer.prototype.generateSvg = function(drawScale, drawCommands, style, key
   g.appendChild(testPath);
   var bBox = testPath.getBBox();
   g.removeChild(testPath);
-  bBoxScaled = {x:bBox.x * drawScale, y:bBox.y * drawScale, width:bBox.width * drawScale, height:bBox.height * drawScale};
+  var bBoxScaled = {x:bBox.x * drawScale, y:bBox.y * drawScale, width:bBox.width * drawScale, height:bBox.height * drawScale};
   var filterEnlarge = blurRadius * 2 + strokeWidth;
   
   var blur = document.createElementNS(svgns, "filter");
