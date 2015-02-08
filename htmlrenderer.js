@@ -941,9 +941,9 @@ AssRenderer.prototype.generateSvg = function(drawScale, drawCommands, style, key
   for (var i = 0; i <= numKeyFrames; i++) {
     percentages.push(100 * i / numKeyFrames);
   }
-  fillKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_fill", percentages);
-  fk = fillKeyFrames;
-  strokeKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_stroke", percentages);
+  var fillKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_fill", percentages);
+  var fk = fillKeyFrames;
+  var strokeKeyFrames = this.createKeyFramesRule(keyFramesIdentifier + "_stroke", percentages);
   for (var i = 0; i < numKeyFrames; i++) {
     var currentTime = duration * i / numKeyFrames;
     var t = currentTime;
